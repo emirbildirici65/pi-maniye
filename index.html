@@ -1,0 +1,2745 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKSARAY GÜLÜM PİŞMANİYE // Geleneksel Lezzet, Lokum & Hediyelik Eşya Sarayı</title>
+  <meta name="description" content="Aksaray Gülüm Pişmaniye; %100 tereyağlı tel pişmaniye, çikolata kaplı saray pişmaniyesi, çifte kavrulmuş Antep fıstıklı lokum, yöresel lezzetler ve otantik Aksaray hediyelik eşya sarayı." />
+
+  <!-- Google Fonts (NO Monospace / NO JetBrains Mono - Josefin Sans for all technical/numeric tags) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Marcellus&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0E0805',
+            velvet: '#1A0F0A',
+            truffle: '#281710',
+            caramel: '#DFB888',
+            copper: '#C89D66',
+            pistachio: '#84A955',
+            crimson: '#C84B61',
+            silk: '#FAF4EB'
+          },
+          fontFamily: {
+            marcellus: ['"Marcellus"', 'serif'],
+            playfair: ['"Playfair Display"', 'serif'],
+            josefin: ['"Josefin Sans"', 'sans-serif'],
+            jakarta: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- GSAP 3.12.2 & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg-obsidian: #0E0805;
+      --bg-velvet: #1A0F0A;
+      --bg-truffle: #281710;
+      --gold-caramel: #DFB888;
+      --gold-copper: #C89D66;
+      --green-pistachio: #84A955;
+      --red-crimson: #C84B61;
+      --text-silk: #FAF4EB;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: #0E0805;
+      color: #FAF4EB;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0E0805;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #DFB888, #84A955);
+      border-radius: 9999px;
+    }
+
+    /* Imperial Glass Card */
+    .imperial-glass {
+      backdrop-filter: blur(26px) saturate(180%);
+      -webkit-backdrop-filter: blur(26px) saturate(180%);
+      background: linear-gradient(155deg, rgba(40, 23, 16, 0.86) 0%, rgba(14, 8, 5, 0.95) 100%);
+      border: 1px solid rgba(223, 184, 136, 0.32);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(250, 244, 235, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Spotlight Hover Lens Effect */
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(223, 184, 136, 0.15), transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .spotlight-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FAF4EB 0%, #DFB888 50%, #C89D66 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .caramel-btn {
+      background: linear-gradient(135deg, #DFB888 0%, #C89D66 100%);
+      color: #0E0805;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px -8px rgba(223, 184, 136, 0.45);
+    }
+    .caramel-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -6px rgba(223, 184, 136, 0.7);
+      filter: brightness(1.06);
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .spin-slow {
+      animation: spinSlow 18s linear infinite;
+    }
+    .spin-reverse {
+      animation: spinReverse 24s linear infinite;
+    }
+
+    /* Hotspot pulse */
+    @keyframes hotspotPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.35); opacity: 0.3; }
+    }
+    .hotspot-ring {
+      animation: hotspotPulse 2.4s infinite ease-in-out;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    /* Print Styles for VIP Order Pass */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #receipt-print-area, #receipt-print-area * {
+        visibility: visible;
+      }
+      #receipt-print-area {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #1A0F0A !important;
+        color: #FAF4EB !important;
+        padding: 32px !important;
+        border: 2px solid #DFB888 !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="pt-20 bg-[#0E0805] text-[#FAF4EB] selection:bg-[#DFB888] selection:text-[#0E0805]">
+
+  <!-- ====================================================================
+       PRELOADER (#preloader)
+       ==================================================================== -->
+  <div id="preloader" class="fixed inset-0 z-[10000] bg-[#0E0805] flex flex-col items-center justify-center px-6 transition-opacity duration-700">
+    <div class="relative w-44 h-44 flex items-center justify-center mb-8">
+      <!-- Rotating Caramel Gold Rings -->
+      <div class="absolute inset-0 rounded-full border border-dashed border-[#DFB888]/40 spin-slow"></div>
+      <div class="absolute inset-3 rounded-full border border-[#C89D66]/30 spin-reverse"></div>
+      <div class="absolute inset-6 rounded-full border-2 border-t-[#DFB888] border-r-transparent border-b-[#84A955]/50 border-l-transparent spin-slow"></div>
+
+      <!-- Brand Logo with Automatic Fallback -->
+      <div class="relative w-28 h-28 rounded-full overflow-hidden border-2 border-[#DFB888] bg-[#1A0F0A] flex items-center justify-center shadow-[0_0_40px_rgba(223,184,136,0.35)]">
+        <img
+          src="logo.png"
+          alt="Aksaray Gülüm Pişmaniye"
+          class="w-full h-full object-cover"
+          onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt='1';this.src='gülümm.jpg';}else{this.style.display='none';this.nextElementSibling.classList.remove('hidden');}"
+        />
+        <!-- Fallback Luxury SVG Crest -->
+        <div class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#281710] via-[#1A0F0A] to-[#0E0805] text-center p-2">
+          <svg class="w-8 h-8 text-[#DFB888] mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" />
+          </svg>
+          <span class="font-marcellus text-[11px] tracking-widest text-[#DFB888] leading-tight">AKSARAY<br/>GÜLÜM</span>
+        </div>
+      </div>
+    </div>
+
+    <p data-i18n="preloaderTitle" class="font-josefin text-xs md:text-sm tracking-[0.28em] text-[#DFB888] uppercase text-center max-w-xl mb-5">
+      AKSARAY GÜLÜM PİŞMANİYE • GELENEKSEL LEZZET & HEDİYELİK SARAYI
+    </p>
+
+    <div class="w-72 md:w-96 h-1.5 bg-[#281710] rounded-full overflow-hidden border border-[#DFB888]/30 mb-3">
+      <div id="preloader-bar" class="h-full bg-gradient-to-r from-[#C89D66] via-[#DFB888] to-[#84A955] w-0 transition-all duration-150"></div>
+    </div>
+
+    <div class="flex items-center gap-3 font-josefin text-xs tracking-[0.2em] text-[#FAF4EB]/80">
+      <span data-i18n="preloaderSub">SARAY MAHZENİ HAZIRLANIYOR</span>
+      <span class="text-[#DFB888]">•</span>
+      <span id="preloader-percentage" class="text-[#DFB888] font-semibold">%00</span>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       STICKY HUD NAVBAR (fixed top-0 left-0 right-0 z-50 h-20 / 80px)
+       ==================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 h-20 bg-[#0E0805]/95 backdrop-blur-xl border-b border-[#DFB888]/25 px-4 lg:px-8 flex items-center justify-between">
+    <!-- Left: Brand Identity -->
+    <a href="#hero-track" class="flex items-center gap-3 group">
+      <div class="relative h-12 w-12 rounded-full overflow-hidden border border-[#DFB888]/50 bg-[#1A0F0A] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(223,184,136,0.2)]">
+        <img
+          src="logo.png"
+          alt="Aksaray Gülüm Pişmaniye"
+          class="h-12 w-auto object-cover"
+          onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt='1';this.src='gülümm.jpg';}else{this.style.display='none';this.nextElementSibling.classList.remove('hidden');}"
+        />
+        <div class="hidden w-full h-full flex items-center justify-center bg-gradient-to-br from-[#281710] to-[#0E0805]">
+          <span class="font-marcellus text-[10px] tracking-wider text-[#DFB888] font-bold">GÜLÜM</span>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-1.5">
+          <span class="font-marcellus text-base md:text-lg tracking-wider text-[#FAF4EB] group-hover:text-[#DFB888] transition-colors">AKSARAY GÜLÜM</span>
+        </div>
+        <span data-i18n="navBrandSub" class="font-josefin text-[10px] md:text-xs tracking-[0.2em] text-[#DFB888] uppercase">
+          // PİŞMANİYE & HEDİYELİK
+        </span>
+      </div>
+    </a>
+
+    <!-- Center: Quick Navigation -->
+    <nav class="hidden xl:flex items-center gap-6 font-josefin text-xs tracking-[0.14em] uppercase text-[#FAF4EB]/85">
+      <a href="#hero-track" data-i18n="navLink1" class="hover:text-[#DFB888] transition-colors py-1">Lezzet Sarayı</a>
+      <a href="#gift-configurator" data-i18n="navLink2" class="hover:text-[#DFB888] transition-colors py-1">Kutu & Sipariş Tasarla</a>
+      <a href="#xray-comparison" data-i18n="navLink3" class="hover:text-[#DFB888] transition-colors py-1">Ustalık X-Ray</a>
+      <a href="#store-blueprint" data-i18n="navLink4" class="hover:text-[#DFB888] transition-colors py-1">Mağaza Reyonları</a>
+      <a href="#production-roadmap" data-i18n="navLink5" class="hover:text-[#DFB888] transition-colors py-1">Kargo Süreci</a>
+      <a href="#product-catalog" data-i18n="navLink6" class="hover:text-[#DFB888] transition-colors py-1">Ürün Kataloğu</a>
+    </nav>
+
+    <!-- Right: Language Switcher + Fresh Production Badge + WhatsApp CTA -->
+    <div class="flex items-center gap-2.5 md:gap-4">
+      <!-- Language Selector [ TR | EN | RU | DE ] -->
+      <div class="flex items-center bg-[#1A0F0A] border border-[#DFB888]/35 rounded-full p-1 font-josefin text-[11px] tracking-wider">
+        <button onclick="setLanguage('tr')" id="lang-btn-tr" class="px-2.5 py-1 rounded-full transition-all bg-[#DFB888] text-[#0E0805] font-bold">TR</button>
+        <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-full transition-all text-[#FAF4EB]/75 hover:text-[#DFB888]">EN</button>
+        <button onclick="setLanguage('ru')" id="lang-btn-ru" class="px-2.5 py-1 rounded-full transition-all text-[#FAF4EB]/75 hover:text-[#DFB888]">RU</button>
+        <button onclick="setLanguage('de')" id="lang-btn-de" class="px-2.5 py-1 rounded-full transition-all text-[#FAF4EB]/75 hover:text-[#DFB888]">DE</button>
+      </div>
+
+      <!-- Pistachio Green Pulse Status Badge -->
+      <div class="hidden md:flex items-center gap-2 bg-[#1A0F0A]/90 border border-[#84A955]/45 rounded-full px-3.5 py-1.5">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#84A955] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#84A955]"></span>
+        </span>
+        <span data-i18n="navBadge" class="font-josefin text-[11px] tracking-wider text-[#FAF4EB] uppercase">
+          Günlük Taze Üretim & 81 İle Kargo: Aktif
+        </span>
+      </div>
+
+      <!-- Fast Order WhatsApp Button -->
+      <a
+        href="https://wa.me/905449210748?text=Merhaba%20Aksaray%20G%C3%BCl%C3%BCm%20Pi%C5%9Fmaniye,%20sipari%C5%9F%20vermek%20istiyorum."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="caramel-btn font-josefin text-xs font-bold tracking-[0.15em] uppercase px-4 py-2.5 rounded-full flex items-center gap-2 shrink-0"
+      >
+        <span data-i18n="navCta">Hızlı Sipariş</span>
+        <span class="text-sm">↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       150-FRAME PINNED HERO & 5-CARD MEXICAN WAVE (#hero-track 520vh)
+       Zero-to-zero alignment with 80px header: sticky top-20 h-[calc(100vh-5rem)]
+       ==================================================================== -->
+  <section id="hero-track" class="relative w-full h-[520vh] bg-[#0E0805]">
+    <div id="hero-pin-scene" class="sticky top-20 w-full h-[calc(100vh-5rem)] overflow-hidden flex flex-col justify-between">
+      <!-- Fullbleed 150-Frame Canvas -->
+      <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+      <!-- Subtle Luxury Vignette Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0E0805]/80 via-[#0E0805]/35 to-[#0E0805]/95 pointer-events-none z-10"></div>
+
+      <!-- Top Hero Header Banner -->
+      <div class="relative z-20 max-w-[1440px] w-full mx-auto px-4 lg:px-8 pt-6 md:pt-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#281710]/90 border border-[#DFB888]/40 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#DFB888]"></span>
+            <span data-i18n="heroEyebrow" class="font-josefin text-[11px] tracking-[0.25em] uppercase text-[#DFB888]">
+              AKSARAY'IN TARİHİ LEZZET VE HEDİYELİK SARAYI • EST. AKSARAY
+            </span>
+          </div>
+          <h1 data-i18n="heroMainTitle" class="font-marcellus text-2xl sm:text-4xl lg:text-5xl text-[#FAF4EB] tracking-wide leading-tight drop-shadow-lg">
+            AKSARAY GÜLÜM PİŞMANİYE & LOKUM SARAYI
+          </h1>
+        </div>
+        <p data-i18n="heroScrollHint" class="font-josefin text-xs tracking-[0.22em] uppercase text-[#DFB888] bg-[#1A0F0A]/85 border border-[#DFB888]/30 px-4 py-2 rounded-full self-start md:self-auto">
+          ↓ KAYDIRARAK 5 SARAY KOLEKSİYONUNU KEŞFEDİN
+        </p>
+      </div>
+
+      <!-- 5-Card Mexican Wave Container -->
+      <div class="relative z-20 max-w-[1440px] w-full mx-auto px-4 lg:px-8 pb-6 md:pb-10 my-auto flex items-center">
+        <div id="hero-wave-grid" class="grid grid-cols-1 lg:grid-cols-5 gap-4 w-full">
+          <!-- Cards dynamically injected & animated by renderHeroCards() + updateMexicanWave() -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       POST-HERO LIVING SWEET COSMOS WRAPPER (#living-sweet-cosmos)
+       ==================================================================== -->
+  <div id="living-sweet-cosmos" class="relative bg-gradient-to-b from-[#0E0805] via-[#1A0F0A] to-[#0A0503] overflow-hidden">
+    <!-- Continuous 70-Particle Caramel Gold & Pistachio Ambient Canvas -->
+    <canvas id="cosmos-ambient-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-65"></canvas>
+
+    <!-- ====================================================================
+         SECTION A: INTERACTIVE GIFT BOX, PİŞMANİYE & ORDER CONFIGURATOR
+         ==================================================================== -->
+    <section id="gift-configurator" class="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8 py-24 border-t border-[#DFB888]/20">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span data-i18n="cfgEyebrow" class="font-josefin text-xs tracking-[0.28em] uppercase text-[#DFB888] block mb-3">
+          // BÖLÜM A • İNTERAKTİF SİPARİŞ & KUTU SİMÜLATÖRÜ
+        </span>
+        <h2 data-i18n="cfgTitle" class="font-marcellus text-3xl md:text-5xl text-[#FAF4EB] mb-4">
+          KENDİ HEDİYE KUTUNUZU & SİPARİŞİNİZİ TASARLAYIN
+        </h2>
+        <p data-i18n="cfgDesc" class="text-[#FAF4EB]/75 text-base md:text-lg">
+          Pişmaniye, çifte kavrulmuş saray lokumu, yöresel lezzetler ve Aksaray hatırası hediyelik eşyaları 4 adımda birleştirin; resmi sipariş fişinizi anında oluşturun.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left Panel: 4-Step Selector (lg:col-span-7) -->
+        <div class="lg:col-span-7 space-y-8">
+          <!-- Step 01 -->
+          <div class="imperial-glass spotlight-card rounded-2xl p-6 md:p-8">
+            <div class="flex items-center justify-between mb-5">
+              <span data-i18n="cfgStep1Title" class="font-josefin text-sm md:text-base font-bold tracking-[0.18em] text-[#DFB888] uppercase">
+                ADIM 01 // KUTU & SİPARİŞ KONSEPTİ SEÇİMİ
+              </span>
+              <span class="font-josefin text-xs text-[#84A955] tracking-widest">01 / 04</span>
+            </div>
+            <div id="cfg-step1-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="imperial-glass spotlight-card rounded-2xl p-6 md:p-8">
+            <div class="flex items-center justify-between mb-5">
+              <span data-i18n="cfgStep2Title" class="font-josefin text-sm md:text-base font-bold tracking-[0.18em] text-[#DFB888] uppercase">
+                ADIM 02 // GRAMAJ, KUTU BOYUTU & ADET SEÇİMİ
+              </span>
+              <span class="font-josefin text-xs text-[#84A955] tracking-widest">02 / 04</span>
+            </div>
+            <div id="cfg-step2-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="imperial-glass spotlight-card rounded-2xl p-6 md:p-8">
+            <div class="flex items-center justify-between mb-5">
+              <span data-i18n="cfgStep3Title" class="font-josefin text-sm md:text-base font-bold tracking-[0.18em] text-[#DFB888] uppercase">
+                ADIM 03 // LEZZET & İÇERİK ÖZELLEŞTİRMESİ
+              </span>
+              <span class="font-josefin text-xs text-[#84A955] tracking-widest">03 / 04</span>
+            </div>
+            <div id="cfg-step3-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="imperial-glass spotlight-card rounded-2xl p-6 md:p-8">
+            <div class="flex items-center justify-between mb-5">
+              <span data-i18n="cfgStep4Title" class="font-josefin text-sm md:text-base font-bold tracking-[0.18em] text-[#DFB888] uppercase">
+                ADIM 04 // HEDİYELİK EŞYA, SUNUM & KARGO EKLENTİLERİ
+              </span>
+              <span class="font-josefin text-xs text-[#84A955] tracking-widest">04 / 04</span>
+            </div>
+            <div class="space-y-3.5">
+              <!-- Default Standard Gift Checkbox -->
+              <label class="flex items-start gap-3.5 p-4 rounded-xl bg-[#281710]/70 border border-[#84A955]/50 cursor-not-allowed">
+                <input type="checkbox" checked disabled class="mt-1 h-4 w-4 accent-[#84A955]" />
+                <span data-i18n="cfgAddon0" class="text-sm text-[#FAF4EB] font-medium">
+                  Özel Vakumlu Tazelik Koruma Ambalajı & Aksaray Gülüm Prestij Çantası (Standart Hediye ✓)
+                </span>
+              </label>
+
+              <!-- Addon 1: Souvenir -->
+              <label class="flex items-start gap-3.5 p-4 rounded-xl bg-[#1A0F0A]/80 border border-[#DFB888]/25 hover:border-[#DFB888] transition-colors cursor-pointer">
+                <input type="checkbox" id="add-souvenir" onchange="updateOrderReceipt()" class="mt-1 h-4 w-4 accent-[#DFB888]" />
+                <span data-i18n="cfgAddon1" class="text-sm text-[#FAF4EB]/90">
+                  El İşlemesi Bakır Cezve, 2'li Kahve Fincanı & Aksaray Hatıra Magneti Ekle (+₺380)
+                </span>
+              </label>
+
+              <!-- Addon 2: Regional -->
+              <label class="flex items-start gap-3.5 p-4 rounded-xl bg-[#1A0F0A]/80 border border-[#DFB888]/25 hover:border-[#DFB888] transition-colors cursor-pointer">
+                <input type="checkbox" id="add-regional" onchange="updateOrderReceipt()" class="mt-1 h-4 w-4 accent-[#DFB888]" />
+                <span data-i18n="cfgAddon2" class="text-sm text-[#FAF4EB]/90">
+                  Aksaray Yöresel Köpük Helva, Tahin & Cevizli Sucuk (Köftür) Paketi Ekle (+₺260)
+                </span>
+              </label>
+
+              <!-- Addon 3: Gift Card -->
+              <label class="flex items-start gap-3.5 p-4 rounded-xl bg-[#1A0F0A]/80 border border-[#DFB888]/25 hover:border-[#DFB888] transition-colors cursor-pointer">
+                <input type="checkbox" id="add-giftcard" onchange="updateOrderReceipt()" class="mt-1 h-4 w-4 accent-[#DFB888]" />
+                <span data-i18n="cfgAddon3" class="text-sm text-[#FAF4EB]/90">
+                  Özel Mühürlü Hediye Not Kartı, Kurdele Süslemesi & Kapıya Hızlı Kargo Gönderimi (+₺90)
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Live Order & Gift Box Receipt (lg:col-span-5 sticky top-28) -->
+        <div class="lg:col-span-5 lg:sticky lg:top-28">
+          <div id="receipt-print-area" class="imperial-glass spotlight-card rounded-2xl p-6 md:p-8 border-2 border-[#DFB888]/50">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-[#DFB888]/25 pb-4 mb-5">
+              <div>
+                <span class="font-josefin text-[11px] tracking-[0.22em] text-[#84A955] uppercase block" data-i18n="receiptBadge">
+                  ● CANLI KONFİGÜRATÖR ÖZETİ
+                </span>
+                <h3 data-i18n="receiptTitle" class="font-marcellus text-lg md:text-xl text-[#DFB888] mt-0.5">
+                  AKSARAY GÜLÜM // RESMİ SİPARİŞ & HEDİYE KUTUSU FİŞİ
+                </h3>
+              </div>
+              <div class="text-right font-josefin">
+                <span class="text-[10px] tracking-widest text-[#FAF4EB]/60 block">AKS-68</span>
+                <span id="receipt-ref-code" class="text-xs font-bold text-[#DFB888] tracking-wider">REF-GLM-68-4821</span>
+              </div>
+            </div>
+
+            <!-- Selected Summary Rows -->
+            <div class="space-y-4 text-sm border-b border-[#DFB888]/25 pb-5 mb-5">
+              <div>
+                <span data-i18n="receiptLblBox" class="font-josefin text-[11px] uppercase tracking-[0.18em] text-[#DFB888] block mb-1">
+                  SEÇİLEN KUTU KONSEPTİ:
+                </span>
+                <p id="dossier-box" class="text-[#FAF4EB] font-medium leading-snug"></p>
+              </div>
+
+              <div>
+                <span data-i18n="receiptLblSize" class="font-josefin text-[11px] uppercase tracking-[0.18em] text-[#DFB888] block mb-1">
+                  BOYUT & GRAMAJ:
+                </span>
+                <p id="dossier-size" class="text-[#FAF4EB] font-medium leading-snug"></p>
+              </div>
+
+              <div>
+                <span data-i18n="receiptLblFlavor" class="font-josefin text-[11px] uppercase tracking-[0.18em] text-[#DFB888] block mb-1">
+                  LEZZET TERCİHİ:
+                </span>
+                <p id="dossier-flavor" class="text-[#FAF4EB] font-medium leading-snug"></p>
+              </div>
+
+              <div>
+                <span data-i18n="receiptLblAddons" class="font-josefin text-[11px] uppercase tracking-[0.18em] text-[#DFB888] block mb-1">
+                  HEDİYELİK EKLENTİLER:
+                </span>
+                <p id="dossier-addons" class="text-[#84A955] text-xs font-medium leading-relaxed"></p>
+              </div>
+            </div>
+
+            <!-- Customer Delivery Note Input -->
+            <div class="mb-5">
+              <label for="order-note" data-i18n="receiptNoteLabel" class="font-josefin text-[11px] uppercase tracking-[0.18em] text-[#DFB888] block mb-2">
+                TESLİMAT TÜRÜ / İSİM / ŞEHİR NOTUNUZ:
+              </label>
+              <input
+                id="order-note"
+                type="text"
+                oninput="updateOrderReceipt()"
+                data-i18n-placeholder="receiptNotePlaceholder"
+                placeholder="Örn: Ahmet Yılmaz - İstanbul Kargo veya Mağazadan Gel-Al"
+                class="w-full rounded-xl bg-[#0E0805]/90 border border-[#DFB888]/35 px-4 py-3 text-sm text-[#FAF4EB] placeholder-[#FAF4EB]/40 focus:outline-none focus:border-[#DFB888]"
+              />
+            </div>
+
+            <!-- Total Price & Dynamic QR Code Row -->
+            <div class="flex items-center justify-between bg-[#0E0805]/90 border border-[#DFB888]/30 rounded-xl p-4 mb-6">
+              <div>
+                <span data-i18n="receiptTotalLabel" class="font-josefin text-[11px] uppercase tracking-[0.2em] text-[#FAF4EB]/70 block">
+                  ANLIK HESAPLANAN TOPLAM TUTAR
+                </span>
+                <div class="flex items-baseline gap-2.5 mt-1">
+                  <span id="dossier-total-try" class="font-josefin text-2xl md:text-3xl font-bold text-[#DFB888]">₺650</span>
+                  <span id="dossier-total-eur" class="font-josefin text-sm text-[#84A955] font-semibold">(~€18)</span>
+                </div>
+                <span id="dossier-bulk-badge" class="font-josefin text-[10px] tracking-wider text-[#C84B61] uppercase hidden">
+                  ★ 10+ KUTU KURUMSAL İSKONTO UYGULANDI
+                </span>
+              </div>
+
+              <!-- Dynamic SVG QR & Barcode -->
+              <div class="flex flex-col items-center bg-[#FAF4EB] p-2 rounded-lg text-[#0E0805]">
+                <svg id="dynamic-qr-svg" class="w-16 h-16" viewBox="0 0 64 64" fill="#0E0805"></svg>
+                <span id="barcode-label" class="font-josefin text-[9px] font-bold tracking-widest mt-1">GLM-68</span>
+              </div>
+            </div>
+
+            <!-- Action CTAs -->
+            <div class="space-y-3">
+              <button
+                onclick="sendCustomOrderWhatsApp()"
+                class="w-full caramel-btn font-josefin text-xs md:text-sm font-bold uppercase tracking-[0.16em] py-4 px-5 rounded-xl flex items-center justify-center gap-2"
+              >
+                <span data-i18n="receiptBtnWhatsapp">Siparişimi WhatsApp'tan Onayla & Hemen Hazırlat ↗</span>
+              </button>
+
+              <button
+                onclick="downloadOrderPass()"
+                class="w-full bg-[#1A0F0A] hover:bg-[#281710] text-[#FAF4EB] border border-[#84A955]/60 hover:border-[#DFB888] transition-all font-josefin text-xs font-semibold uppercase tracking-[0.14em] py-3.5 px-5 rounded-xl flex items-center justify-center gap-2"
+              >
+                <span data-i18n="receiptBtnPdf">📄 Resmi Sipariş Fişimi & Kutu İçeriğini İndir (PDF / VIP Pass)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION B: "eski.png" VS "yeni.png" INTERACTIVE X-RAY SLIDER
+         ==================================================================== -->
+    <section id="xray-comparison" class="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8 py-24 border-t border-[#DFB888]/20">
+      <div class="text-center max-w-4xl mx-auto mb-14">
+        <span data-i18n="xrayEyebrow" class="font-josefin text-xs tracking-[0.28em] uppercase text-[#DFB888] block mb-3">
+          // BÖLÜM B • İNTERAKTİF USTALIK & SUNUM PERDESİ
+        </span>
+        <h2 data-i18n="xrayTitle" class="font-marcellus text-2xl md:text-4xl text-[#FAF4EB] mb-4">
+          GELENEKSEL BAKIR KAZAN USTALIĞI VS. MODERN VIP HEDİYELİK SUNUM // X-RAY KIYASLAMA
+        </h2>
+        <p data-i18n="xrayDesc" class="text-[#FAF4EB]/75 text-base">
+          Ortadaki altın sürgüyü sağa-sola kaydırarak asırlık bakır kazan tel çekim ustalığımız ile modern vakumlu VIP kutu sunumumuz arasındaki dönüşümü inceleyin.
+        </p>
+      </div>
+
+      <div class="imperial-glass rounded-3xl p-4 md:p-6">
+        <div id="xray-stage" class="relative w-full h-[420px] md:h-[540px] rounded-2xl overflow-hidden select-none border border-[#DFB888]/30">
+          <!-- LEFT / BASE LAYER: eski.png (Traditional Copper Cauldron Mastery) -->
+          <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-[#281710] via-[#1A0F0A] to-[#0E0805]">
+            <img
+              src="eski.png"
+              alt="Geleneksel Bakır Kazan Ustalığı"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden');"
+            />
+            <!-- Rich Graphic Fallback for eski.png -->
+            <div class="hidden w-full h-full relative flex flex-col items-center justify-center p-8 bg-[radial-gradient(circle_at_30%_50%,rgba(200,157,102,0.28),rgba(14,8,5,0.96))]">
+              <svg class="w-40 h-40 text-[#C89D66]/60 mb-4" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="85" stroke="#C89D66" stroke-width="2" stroke-dasharray="6 6"/>
+                <path d="M40 110 C40 160, 160 160, 160 110 Z" fill="rgba(200,157,102,0.25)" stroke="#DFB888" stroke-width="3"/>
+                <path d="M30 110 L170 110" stroke="#DFB888" stroke-width="4" stroke-linecap="round"/>
+                <path d="M75 85 Q100 45 125 85" stroke="#DFB888" stroke-width="2.5" fill="none"/>
+                <path d="M60 95 Q100 55 140 95" stroke="#C89D66" stroke-width="2" fill="none"/>
+              </svg>
+              <span class="font-josefin text-xs tracking-[0.3em] text-[#DFB888]/80 uppercase mb-1">[ eski.png • BAKIR KAZAN ARŞİV KATMANI ]</span>
+              <p data-i18n="xrayLeftLabel" class="font-marcellus text-xl md:text-2xl text-[#FAF4EB] text-center max-w-lg">
+                GELENEKSEL BAKIR KAZAN, SAF TEREYAĞI & BİLEK GÜCÜYLE TEL ÇEKİMİ
+              </p>
+            </div>
+
+            <!-- Label Badge Bottom Left -->
+            <div class="absolute bottom-5 left-5 z-20 bg-[#0E0805]/90 border border-[#C89D66]/60 px-4 py-2.5 rounded-xl max-w-xs md:max-w-md">
+              <span class="font-josefin text-[10px] tracking-[0.25em] text-[#C89D66] block uppercase">01 // MIRAS & OCAK</span>
+              <span data-i18n="xrayLeftBadge" class="font-josefin text-xs md:text-sm font-bold text-[#FAF4EB]">
+                GELENEKSEL BAKIR KAZAN, SAF TEREYAĞI & BİLEK GÜCÜYLE TEL ÇEKİMİ
+              </span>
+            </div>
+          </div>
+
+          <!-- RIGHT / CLIPPED LAYER: yeni.png (Modern VIP Confectionery Presentation) -->
+          <div id="xray-top-layer" class="absolute inset-0 w-full h-full bg-gradient-to-bl from-[#1A0F0A] via-[#281710] to-[#0E0805]" style="clip-path: inset(0 0 0 50%);">
+            <img
+              src="yeni.png"
+              alt="Modern VIP Hediyelik Sunumu"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden');"
+            />
+            <!-- Rich Graphic Fallback for yeni.png -->
+            <div class="hidden w-full h-full relative flex flex-col items-center justify-center p-8 bg-[radial-gradient(circle_at_70%_50%,rgba(132,169,85,0.25),rgba(26,15,10,0.96))]">
+              <svg class="w-40 h-40 text-[#DFB888] mb-4" viewBox="0 0 200 200" fill="none">
+                <rect x="45" y="55" width="110" height="90" rx="12" fill="rgba(223,184,136,0.18)" stroke="#DFB888" stroke-width="3"/>
+                <path d="M45 85 L155 85" stroke="#84A955" stroke-width="3"/>
+                <path d="M100 55 L100 145" stroke="#84A955" stroke-width="3"/>
+                <circle cx="100" cy="85" r="14" fill="#DFB888"/>
+              </svg>
+              <span class="font-josefin text-xs tracking-[0.3em] text-[#84A955] uppercase mb-1">[ yeni.png • VIP SUNUM KATMANI ]</span>
+              <p data-i18n="xrayRightLabel" class="font-marcellus text-xl md:text-2xl text-[#FAF4EB] text-center max-w-lg">
+                AKSARAY GÜLÜM MODERN ÇİKOLATALI, FISTIKLI & VAKUMLU VIP SUNUMU
+              </p>
+            </div>
+
+            <!-- Label Badge Bottom Right -->
+            <div class="absolute bottom-5 right-5 z-20 bg-[#0E0805]/90 border border-[#84A955]/60 px-4 py-2.5 rounded-xl max-w-xs md:max-w-md text-right">
+              <span class="font-josefin text-[10px] tracking-[0.25em] text-[#84A955] block uppercase">02 // MODERN SARAY SUNUMU</span>
+              <span data-i18n="xrayRightBadge" class="font-josefin text-xs md:text-sm font-bold text-[#FAF4EB]">
+                AKSARAY GÜLÜM MODERN ÇİKOLATALI, FISTIKLI & VAKUMLU VIP SUNUMU
+              </span>
+            </div>
+          </div>
+
+          <!-- Vertical Divider Handle -->
+          <div id="xray-divider" class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 bg-[#DFB888] shadow-[0_0_25px_#DFB888] z-30 pointer-events-none flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-[#0E0805] border-2 border-[#DFB888] flex items-center justify-center shadow-xl">
+              <span class="font-josefin text-xs font-bold text-[#DFB888]">↔</span>
+            </div>
+          </div>
+
+          <!-- Invisible Range Input for Smooth Touch/Mouse Drag -->
+          <input
+            id="xray-range"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            oninput="updateXraySlider(this.value)"
+            aria-label="X-Ray Comparison Slider"
+            class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION C: INTERACTIVE SVG STORE BLUEPRINT & 5 HOTSPOT EXPLORER
+         ==================================================================== -->
+    <section id="store-blueprint" class="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8 py-24 border-t border-[#DFB888]/20">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span data-i18n="mapEyebrow" class="font-josefin text-xs tracking-[0.28em] uppercase text-[#DFB888] block mb-3">
+          // BÖLÜM C • İNTERAKTİF MAĞAZA & ÜRETİM PLANI
+        </span>
+        <h2 data-i18n="mapTitle" class="font-marcellus text-3xl md:text-5xl text-[#FAF4EB] mb-4">
+          AKSARAY GÜLÜM LEZZET SARAYI // 5 REYON KEŞİF HARİTASI
+        </h2>
+        <p data-i18n="mapDesc" class="text-[#FAF4EB]/75 text-base">
+          Mimari reyon planı üzerindeki parlayan 01 - 05 numaralı noktalara tıklayarak mağazamızın özel lezzet ve hediyelik bölümlerini keşfedin.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Left: Detailed SVG Store Floorplan (lg:col-span-7) -->
+        <div class="lg:col-span-7 imperial-glass rounded-2xl p-5 md:p-8">
+          <div class="flex items-center justify-between mb-4 font-josefin text-xs tracking-[0.18em] text-[#DFB888]">
+            <span data-i18n="mapSvgHeader">MİMARİ REYON PLANI // AKSARAY MERKEZ & KARAYOLU SHOWROOM</span>
+            <span class="text-[#84A955]">SCALE 1:100</span>
+          </div>
+
+          <div class="relative w-full aspect-[16/10] bg-[#0E0805] rounded-xl border border-[#DFB888]/30 overflow-hidden p-2">
+            <svg viewBox="0 0 800 500" class="w-full h-full">
+              <defs>
+                <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(223,184,136,0.08)" stroke-width="1"/>
+                </pattern>
+              </defs>
+
+              <!-- Background Grid -->
+              <rect width="800" height="500" fill="url(#blueprintGrid)" />
+
+              <!-- Outer Perimeter Walls -->
+              <rect x="30" y="30" width="740" height="440" rx="16" fill="rgba(40,23,16,0.55)" stroke="#DFB888" stroke-width="3"/>
+              <rect x="42" y="42" width="716" height="416" rx="12" fill="none" stroke="rgba(200,157,102,0.3)" stroke-width="1" stroke-dasharray="8 6"/>
+
+              <!-- Zone 1: Hot Pişmaniye & Chocolate Fountain (Top Left) -->
+              <rect x="60" y="60" width="310" height="175" rx="10" fill="rgba(223,184,136,0.07)" stroke="#DFB888" stroke-width="1.8"/>
+              <circle cx="135" cy="145" r="42" fill="rgba(200,157,102,0.15)" stroke="#DFB888" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <text x="78" y="88" fill="#DFB888" font-family="Josefin Sans" font-size="12" letter-spacing="2">ZONE 01 // PİŞMANİYE ATÖLYESİ</text>
+
+              <!-- Zone 2: Royal Turkish Delight & Cezerye Vault (Top Right) -->
+              <rect x="395" y="60" width="345" height="175" rx="10" fill="rgba(132,169,85,0.08)" stroke="#84A955" stroke-width="1.8"/>
+              <rect x="425" y="110" width="285" height="40" rx="6" fill="rgba(132,169,85,0.15)" stroke="#84A955" stroke-width="1.2"/>
+              <rect x="425" y="165" width="285" height="40" rx="6" fill="rgba(132,169,85,0.15)" stroke="#84A955" stroke-width="1.2"/>
+              <text x="415" y="88" fill="#84A955" font-family="Josefin Sans" font-size="12" letter-spacing="2">ZONE 02 // LOKUM & HELVA MAHZENİ</text>
+
+              <!-- Zone 3: Aksaray Souvenirs, Copper & Ceramics (Bottom Left) -->
+              <rect x="60" y="260" width="230" height="180" rx="10" fill="rgba(200,75,97,0.08)" stroke="#C89D61" stroke-width="1.8"/>
+              <text x="76" y="288" fill="#DFB888" font-family="Josefin Sans" font-size="11" letter-spacing="1.5">ZONE 03 // HEDİYELİK & BAKIR</text>
+
+              <!-- Zone 4: Roasted Nuts, Dibek Coffee & Regional Market (Bottom Center) -->
+              <rect x="310" y="260" width="210" height="180" rx="10" fill="rgba(223,184,136,0.07)" stroke="#C89D66" stroke-width="1.8"/>
+              <text x="326" y="288" fill="#C89D66" font-family="Josefin Sans" font-size="11" letter-spacing="1.5">ZONE 04 // YÖRESEL PAZAR</text>
+
+              <!-- Zone 5: VIP Packaging & 81-Province Vacuum Cargo Hub (Bottom Right) -->
+              <rect x="540" y="260" width="200" height="180" rx="10" fill="rgba(132,169,85,0.1)" stroke="#84A955" stroke-width="1.8"/>
+              <text x="556" y="288" fill="#84A955" font-family="Josefin Sans" font-size="11" letter-spacing="1.5">ZONE 05 // VAKUM KARGO</text>
+
+              <!-- Interactive Hotspot 01 -->
+              <g class="cursor-pointer" onclick="selectBlueprintHotspot(0)">
+                <circle cx="210" cy="145" r="24" fill="rgba(223,184,136,0.25)" class="hotspot-ring"/>
+                <circle id="hs-circle-0" cx="210" cy="145" r="16" fill="#DFB888" stroke="#0E0805" stroke-width="3"/>
+                <text x="210" y="150" text-anchor="middle" fill="#0E0805" font-family="Josefin Sans" font-weight="bold" font-size="12">01</text>
+              </g>
+
+              <!-- Interactive Hotspot 02 -->
+              <g class="cursor-pointer" onclick="selectBlueprintHotspot(1)">
+                <circle cx="565" cy="145" r="24" fill="rgba(132,169,85,0.25)" class="hotspot-ring"/>
+                <circle id="hs-circle-1" cx="565" cy="145" r="16" fill="#1A0F0A" stroke="#84A955" stroke-width="3"/>
+                <text x="565" y="150" text-anchor="middle" fill="#FAF4EB" font-family="Josefin Sans" font-weight="bold" font-size="12">02</text>
+              </g>
+
+              <!-- Interactive Hotspot 03 -->
+              <g class="cursor-pointer" onclick="selectBlueprintHotspot(2)">
+                <circle cx="175" cy="355" r="24" fill="rgba(223,184,136,0.25)" class="hotspot-ring"/>
+                <circle id="hs-circle-2" cx="175" cy="355" r="16" fill="#1A0F0A" stroke="#DFB888" stroke-width="3"/>
+                <text x="175" y="360" text-anchor="middle" fill="#FAF4EB" font-family="Josefin Sans" font-weight="bold" font-size="12">03</text>
+              </g>
+
+              <!-- Interactive Hotspot 04 -->
+              <g class="cursor-pointer" onclick="selectBlueprintHotspot(3)">
+                <circle cx="415" cy="355" r="24" fill="rgba(200,157,102,0.25)" class="hotspot-ring"/>
+                <circle id="hs-circle-3" cx="415" cy="355" r="16" fill="#1A0F0A" stroke="#C89D66" stroke-width="3"/>
+                <text x="415" y="360" text-anchor="middle" fill="#FAF4EB" font-family="Josefin Sans" font-weight="bold" font-size="12">04</text>
+              </g>
+
+              <!-- Interactive Hotspot 05 -->
+              <g class="cursor-pointer" onclick="selectBlueprintHotspot(4)">
+                <circle cx="640" cy="355" r="24" fill="rgba(132,169,85,0.25)" class="hotspot-ring"/>
+                <circle id="hs-circle-4" cx="640" cy="355" r="16" fill="#1A0F0A" stroke="#84A955" stroke-width="3"/>
+                <text x="640" y="360" text-anchor="middle" fill="#FAF4EB" font-family="Josefin Sans" font-weight="bold" font-size="12">05</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Quick Hotspot Buttons Below Map -->
+          <div id="hotspot-pill-bar" class="grid grid-cols-5 gap-2 mt-4"></div>
+        </div>
+
+        <!-- Right: Dynamic Hotspot Detail Card (lg:col-span-5) -->
+        <div class="lg:col-span-5">
+          <div class="imperial-glass spotlight-card rounded-2xl p-6 md:p-8 border border-[#DFB888]/40">
+            <div class="flex items-center justify-between mb-4">
+              <span id="hs-detail-code" class="font-josefin text-xs font-bold tracking-[0.22em] text-[#84A955] uppercase">
+                HOTSPOT 01 // AKTİF REYON
+              </span>
+              <span class="font-josefin text-xs text-[#DFB888] tracking-widest">AKSARAY GÜLÜM</span>
+            </div>
+
+            <h3 id="hs-detail-title" class="font-marcellus text-2xl md:text-3xl text-[#FAF4EB] mb-4 leading-snug"></h3>
+            <p id="hs-detail-desc" class="text-[#FAF4EB]/80 text-sm md:text-base leading-relaxed mb-6"></p>
+
+            <div id="hs-detail-highlights" class="space-y-2.5 border-t border-b border-[#DFB888]/20 py-4 mb-6"></div>
+
+            <a
+              href="#gift-configurator"
+              class="caramel-btn w-full py-3.5 px-5 rounded-xl font-josefin text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2"
+            >
+              <span data-i18n="hsCtaBtn">Bu Reyon Ürünleriyle Kutu Tasarla ↓</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION D: INTERACTIVE 4-STEP PRODUCTION TO DOOR ROADMAP
+         ==================================================================== -->
+    <section id="production-roadmap" class="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8 py-24 border-t border-[#DFB888]/20">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span data-i18n="roadEyebrow" class="font-josefin text-xs tracking-[0.28em] uppercase text-[#DFB888] block mb-3">
+          // BÖLÜM D • ÜRETİMDEN KAPINIZA TAZELİK YOL HARİTASI
+        </span>
+        <h2 data-i18n="roadTitle" class="font-marcellus text-3xl md:text-5xl text-[#FAF4EB] mb-4">
+          4 ADIMDA BAKIR KAZANDAN TÜRKİYE & AVRUPA'YA TAZELİK
+        </h2>
+        <p data-i18n="roadDesc" class="text-[#FAF4EB]/75 text-base">
+          Glikozsuz %100 pancar şekeriyle başlayan yolculuğumuzun, vakumlu tazelik zırhıyla kapınıza nasıl ulaştığını adımlara tıklayarak inceleyin.
+        </p>
+      </div>
+
+      <!-- 4 Clickable Step Tabs -->
+      <div id="roadmap-tabs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"></div>
+
+      <!-- Active Step Detail Card -->
+      <div class="imperial-glass spotlight-card rounded-2xl p-6 md:p-10 border border-[#DFB888]/40">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-8">
+            <span id="road-active-badge" class="font-josefin text-xs tracking-[0.25em] text-[#84A955] uppercase block mb-2"></span>
+            <h3 id="road-active-title" class="font-marcellus text-2xl md:text-4xl text-[#FAF4EB] mb-4"></h3>
+            <p id="road-active-desc" class="text-[#FAF4EB]/85 text-base md:text-lg leading-relaxed"></p>
+          </div>
+          <div class="lg:col-span-4 bg-[#0E0805]/85 border border-[#DFB888]/30 rounded-2xl p-6 flex flex-col justify-center">
+            <span data-i18n="roadSpecHeader" class="font-josefin text-xs tracking-[0.22em] text-[#DFB888] uppercase mb-3">
+              KALİTE & GÜVENCE PARAMETRESİ
+            </span>
+            <p id="road-active-metric" class="font-josefin text-2xl font-bold text-[#FAF4EB] mb-2"></p>
+            <p id="road-active-sub" class="font-josefin text-xs tracking-wider text-[#84A955] uppercase"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION E: 4-TAB & 12-PHOTO PRODUCT CATALOG (urun1.png - urun12.png)
+         ==================================================================== -->
+    <section id="product-catalog" class="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8 py-24 border-t border-[#DFB888]/20">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span data-i18n="catEyebrow" class="font-josefin text-xs tracking-[0.28em] uppercase text-[#DFB888] block mb-3">
+          // BÖLÜM E • 12 İMZALI KOLEKSİYON & ÜRÜN KATALOĞU
+        </span>
+        <h2 data-i18n="catTitle" class="font-marcellus text-3xl md:text-5xl text-[#FAF4EB] mb-4">
+          SARAY PİŞMANİYESİ, LOKUM & HEDİYELİK EŞYA KOLEKSİYONU
+        </h2>
+        <p data-i18n="catDesc" class="text-[#FAF4EB]/75 text-base">
+          4 ana koleksiyon sekmemizden dilediğiniz ürünü inceleyin ve tek tıkla WhatsApp sipariş hattımızdan taze hazırlatın.
+        </p>
+      </div>
+
+      <!-- 4 Category Tabs -->
+      <div id="catalog-tabs" class="flex flex-wrap items-center justify-center gap-3 mb-12"></div>
+
+      <!-- 3 Product Cards Grid (12 Total across 4 tabs) -->
+      <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION F: GÜLÜM PİŞMANİYE QUALITY GUARANTEE (4-Card Bento Grid)
+         CRITICAL RULE: "01 // ...", "02 // ...", "03 // ...", "04 // ..."
+         headings have ZERO box, border, or background around them—pure Josefin Sans text!
+         ==================================================================== -->
+    <section id="quality-standards" class="relative z-10 max-w-[1440px] mx-auto px-4 lg:px-8 py-24 border-t border-[#DFB888]/20">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span data-i18n="bentoEyebrow" class="font-josefin text-xs tracking-[0.28em] uppercase text-[#DFB888] block mb-3">
+          // BÖLÜM F • KALİTE VE TAZELİK ANAYASASI
+        </span>
+        <h2 data-i18n="bentoTitle" class="font-marcellus text-3xl md:text-5xl text-[#FAF4EB] mb-4">
+          GÜLÜM PİŞMANİYE KALİTE VE TAZELİK GÜVENCESİ
+        </h2>
+      </div>
+
+      <div id="bento-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Rendered dynamically by renderBentoGrid() with pure unboxed Josefin Sans headings -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         COMPREHENSIVE 4-COLUMN FOOTER
+         ==================================================================== -->
+    <footer class="relative z-10 border-t border-[#DFB888]/30 bg-[#0A0503] pt-20 pb-28">
+      <div class="max-w-[1440px] mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-[#DFB888]/20">
+          <!-- Column 1: Brand & Heritage -->
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="h-12 w-12 rounded-full overflow-hidden border border-[#DFB888]/50 bg-[#1A0F0A] flex items-center justify-center shrink-0">
+                <img
+                  src="logo.png"
+                  alt="Aksaray Gülüm Pişmaniye"
+                  class="h-12 w-auto object-cover"
+                  onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt='1';this.src='gülümm.jpg';}else{this.style.display='none';this.nextElementSibling.classList.remove('hidden');}"
+                />
+                <div class="hidden w-full h-full flex items-center justify-center bg-[#281710]">
+                  <span class="font-marcellus text-[10px] text-[#DFB888]">GÜLÜM</span>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-marcellus text-lg text-[#FAF4EB]">AKSARAY GÜLÜM</h4>
+                <span data-i18n="footerBrandSub" class="font-josefin text-[11px] tracking-[0.2em] text-[#DFB888] uppercase block">
+                  PİŞMANİYE & HEDİYELİK SARAYI
+                </span>
+              </div>
+            </div>
+            <p data-i18n="footerAbout" class="text-sm text-[#FAF4EB]/70 leading-relaxed mb-4">
+              Aksaray'da günlük bakır kazan üretimi %100 tereyağlı tel pişmaniye, çifte kavrulmuş Antep fıstıklı saray lokumu, yöresel lezzetler ve otantik Aksaray hediyelik eşya merkezi.
+            </p>
+            <span class="font-josefin text-xs tracking-[0.2em] text-[#84A955] uppercase">
+              ✓ %0 GLİKOZ • %100 DOĞAL PANCAR ŞEKERİ
+            </span>
+          </div>
+
+          <!-- Column 2: Store Locations -->
+          <div>
+            <h5 data-i18n="footerCol2Title" class="font-josefin text-sm font-bold tracking-[0.2em] text-[#DFB888] uppercase mb-4">
+              MAĞAZA & ÜRETİM NOKTALARIMIZ
+            </h5>
+            <ul class="space-y-3 text-sm text-[#FAF4EB]/75">
+              <li data-i18n="footerLoc1">📍 Aksaray Merkez Çarşı & Yöresel Hediyelik Showroom, Aksaray / Türkiye</li>
+              <li data-i18n="footerLoc2">📍 E-90 Karayolu / Kapadokya - Ihlara Turizm Güzergahı Dinlenme & Satış Noktası</li>
+              <li data-i18n="footerHours" class="text-[#DFB888] font-josefin text-xs tracking-wider pt-1">
+                ÇALIŞMA SAATLERİ: HER GÜN 07:30 — 23:00
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Product Categories -->
+          <div>
+            <h5 data-i18n="footerCol3Title" class="font-josefin text-sm font-bold tracking-[0.2em] text-[#DFB888] uppercase mb-4">
+              ÜRÜN KATEGORİLERİMİZ
+            </h5>
+            <ul class="space-y-2.5 text-sm text-[#FAF4EB]/75">
+              <li><a href="#product-catalog" onclick="setPracticeTab(0)" data-i18n="footerCat1" class="hover:text-[#DFB888] transition-colors">→ Tereyağlı & Çikolatalı Tel Pişmaniye</a></li>
+              <li><a href="#product-catalog" onclick="setPracticeTab(1)" data-i18n="footerCat2" class="hover:text-[#DFB888] transition-colors">→ Çifte Kavrulmuş Saray Lokumu & Cezerye</a></li>
+              <li><a href="#product-catalog" onclick="setPracticeTab(2)" data-i18n="footerCat3" class="hover:text-[#DFB888] transition-colors">→ Aksaray, Ihlara & Hasan Dağı Hediyelik Eşya</a></li>
+              <li><a href="#product-catalog" onclick="setPracticeTab(3)" data-i18n="footerCat4" class="hover:text-[#DFB888] transition-colors">→ Gurbetçi Vakumlu Paketler & Söz/Nişan Tepsileri</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Direct Order & Wholesale Line -->
+          <div>
+            <h5 data-i18n="footerCol4Title" class="font-josefin text-sm font-bold tracking-[0.2em] text-[#DFB888] uppercase mb-4">
+              SİPARİŞ & TOPTAN SATIŞ HATTI
+            </h5>
+            <p data-i18n="footerCol4Desc" class="text-sm text-[#FAF4EB]/75 mb-4">
+              81 ile aynı gün darbe korumalı kargo, otobüs kargosu ve kurumsal toplu hediye siparişleriniz için:
+            </p>
+            <a
+              href="https://wa.me/905449210748?text=Merhaba%20Aksaray%20G%C3%BCl%C3%BCm%20Pi%C5%9Fmaniye,%20sipari%C5%9F%20ve%20fiyat%20bilgisi%20almak%20istiyorum."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-josefin text-lg font-bold text-[#DFB888] hover:text-[#84A955] transition-colors mb-3"
+            >
+              <span>📞 +90 544 921 07 48</span>
+            </a>
+            <div class="text-xs font-josefin tracking-wider text-[#FAF4EB]/60 uppercase" data-i18n="footerShipNote">
+              TÜRKİYE GENELİ & AVRUPA UÇAK BAGAJI VAKUM UYUMLU
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-josefin text-xs tracking-wider text-[#FAF4EB]/55">
+          <span data-i18n="footerCopy">© 2025 AKSARAY GÜLÜM PİŞMANİYE, LOKUM & HEDİYELİK EŞYA SARAYI. TÜM HAKLARI SAKLIDIR.</span>
+          <span data-i18n="footerCraft">PLAKA 68 // AKSARAY GELENEKSEL LEZZET MİRASI</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ====================================================================
+       LIVE TOAST NOTIFICATION
+       ==================================================================== -->
+  <div id="live-toast" class="fixed bottom-6 left-6 z-[9998] pointer-events-none opacity-0 translate-y-4 transition-all duration-300">
+    <div class="imperial-glass px-5 py-3.5 rounded-xl border border-[#DFB888]/60 flex items-center gap-3 shadow-2xl">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#84A955] animate-ping"></span>
+      <span id="live-toast-text" class="font-josefin text-xs tracking-wider text-[#FAF4EB]"></span>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       FIXED BOTTOM-RIGHT AWWA MEDYA SHOWROOM SIGNATURE BADGE
+       ==================================================================== -->
+  <a
+    href="https://wa.me/905449210748?text=Merhaba,%20AWWA%20Medya%20taraf%C4%B1ndan%20haz%C4%B1rlanan%20Aksaray%20G%C3%BCl%C3%BCm%20Pi%C5%9Fmaniye%20web%20sitesini%20inceledim.%20Markam%C4%B1z%20i%C3%A7in%20fiyat%20teklifi%20almak%20istiyorum."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="fixed bottom-6 right-6 z-[9999] bg-[#0E0805]/95 hover:bg-[#1A0F0A] border border-[#DFB888]/75 rounded-2xl p-4 shadow-[0_0_35px_rgba(223,184,136,0.3)] transition-all duration-300 hover:-translate-y-1 max-w-xs group"
+  >
+    <div data-i18n="awwaTop" class="font-josefin text-[10px] tracking-[0.22em] text-[#DFB888] uppercase">
+      ⚡ WEB MİMARİSİ & GELİŞTİRME
+    </div>
+    <div class="font-marcellus text-base text-[#FAF4EB] tracking-wider my-0.5 group-hover:text-[#DFB888] transition-colors">
+      AWWA MEDYA
+    </div>
+    <div data-i18n="awwaBottom" class="text-[11px] text-[#FAF4EB]/75 leading-snug">
+      Markanıza & Mağazanıza Özel Yeni Nesil 3D Sipariş Siteleri İçin Tıklayın →
+    </div>
+  </a>
+
+  <!-- ====================================================================
+       MASTER JAVASCRIPT ENGINE (I18N 4 LANGUAGES + 150-FRAME CANVAS + UI)
+       ==================================================================== -->
+  <script>
+    const TOTAL_FRAMES = 150;
+    const WHATSAPP_NUMBER = "905449210748";
+    const currentFrame = (index) => `frame/ezgif-frame-${index.toString().padStart(3, '0')}.webp`;
+
+    let currentLang = 'tr';
+    let selectedConfig = { step1: 0, step2: 0, step3: 0 };
+    let activeHotspotIndex = 0;
+    let activeRoadmapIndex = 0;
+    let activeCatalogTab = 0;
+
+    // ====================================================================
+    // 100% COMPREHENSIVE 4-LANGUAGE TRANSLATION DICTIONARY (TR, EN, RU, DE)
+    // ====================================================================
+    const I18N = {
+      tr: {
+        preloaderTitle: "AKSARAY GÜLÜM PİŞMANİYE • GELENEKSEL LEZZET & HEDİYELİK SARAYI",
+        preloaderSub: "SARAY MAHZENİ HAZIRLANIYOR",
+        navBrandSub: "// PİŞMANİYE & HEDİYELİK",
+        navLink1: "Lezzet Sarayı",
+        navLink2: "Kutu & Sipariş Tasarla",
+        navLink3: "Ustalık X-Ray",
+        navLink4: "Mağaza Reyonları",
+        navLink5: "Kargo Süreci",
+        navLink6: "Ürün Kataloğu",
+        navBadge: "Günlük Taze Üretim & 81 İle Kargo: Aktif",
+        navCta: "Hızlı Sipariş",
+        heroEyebrow: "AKSARAY'IN TARİHİ LEZZET VE HEDİYELİK SARAYI • EST. AKSARAY",
+        heroMainTitle: "AKSARAY GÜLÜM PİŞMANİYE & LOKUM SARAYI",
+        heroScrollHint: "↓ KAYDIRARAK 5 SARAY KOLEKSİYONUNU KEŞFEDİN",
+        heroCards: [
+          {
+            code: "01 // ARTISAN PİŞMANİYE MASTERY",
+            title: "Ağızda Eriyen %100 Tereyağlı Tel Tel Ustalık.",
+            desc: "Aksaray'da günlük olarak bakır kazanlarda pişirilen, glikoz içermeyen %100 doğal pancar şekeri, saf tereyağı ve boz Antep fıstığıyla çekilen saray pişmaniyesi.",
+            footer: "✓ GÜNLÜK TAZE ÇEKİM • %100 DOĞAL ŞEKER"
+          },
+          {
+            code: "02 // ROYAL TURKISH DELIGHT (LOKUM)",
+            title: "Çifte Kavrulmuş Bol Fıstıklı Hünkar Lokumları.",
+            desc: "Nar suyundan manda kaymağına, gül yaprağından kadayıf kaplamaya kadar 40'tan fazla çeşidiyle damağınızda iz bırakan taze saray lokumu ve cezerye koleksiyonu.",
+            footer: "◆ BOZ ANTEP FISTIĞI • 40+ ÖZEL ÇEŞİT"
+          },
+          {
+            code: "03 // AKSARAY SOUVENIRS & GIFTS",
+            title: "Aksaray'ın Ruhunu Taşıyan Otantik Hediyelik Eşyalar.",
+            desc: "Sevdiklerinize Aksaray'dan götürebileceğiniz el işlemesi bakır kahve takımları, Ihlara & Hasan Dağı hatıra objeleri, çini lokumluklar ve yöresel hediye setleri.",
+            footer: "✦ HEDİYELİK EŞYA • OTANTİK HATIRA"
+          },
+          {
+            code: "04 // GURBETÇİ & TÜRKİYE KARGO PAKETİ",
+            title: "Vakumlu Özel Ambalajla Türkiye ve Avrupa'ya Tazelik.",
+            desc: "Yolculukta ve kargoda asla dağılmayan, nem geçirmeyen özel vakumlu teneke ve ahşap kutularımızla 81 ile aynı gün kargo ve yurt dışı uçak bagajı uyumu.",
+            footer: "✓ VAKUMLU KORUMA • 81 İLE HIZLI KARGO"
+          },
+          {
+            code: "05 // CUSTOM GIFT BOX CONFIGURATOR",
+            title: "Kendi Hediyelik Kutunuzu ve Siparişinizi Şimdi Oluşturun.",
+            desc: "İstediğiniz pişmaniye, lokum ve hediyelik eşyaları aşağıdaki interaktif kutu simülatörümüzle birleştirin; sipariş fişinizi PDF olarak indirin veya WhatsApp'tan anında sipariş verin.",
+            btn1: "Kutu Tasarlayıcıyı Aç ↓",
+            btn2: "WhatsApp Sipariş ↗"
+          }
+        ],
+        cfgEyebrow: "// BÖLÜM A • İNTERAKTİF SİPARİŞ & KUTU SİMÜLATÖRÜ",
+        cfgTitle: "KENDİ HEDİYE KUTUNUZU & SİPARİŞİNİZİ TASARLAYIN",
+        cfgDesc: "Pişmaniye, çifte kavrulmuş saray lokumu, yöresel lezzetler ve Aksaray hatırası hediyelik eşyaları 4 adımda birleştirin; resmi sipariş fişinizi anında oluşturun.",
+        cfgStep1Title: "ADIM 01 // KUTU & SİPARİŞ KONSEPTİ SEÇİMİ",
+        cfgStep2Title: "ADIM 02 // GRAMAJ, KUTU BOYUTU & ADET SEÇİMİ",
+        cfgStep3Title: "ADIM 03 // LEZZET & İÇERİK ÖZELLEŞTİRMESİ",
+        cfgStep4Title: "ADIM 04 // HEDİYELİK EŞYA, SUNUM & KARGO EKLENTİLERİ",
+        cfgStep1: [
+          { label: "Aksaray Gülüm VIP Karışık Lezzet Kutusu (Pişmaniye + Özel Lokum + Yöresel Helva — ₺650)", price: 650 },
+          { label: "Sadece Taze Pişmaniye Paketi (Sade, Antep Fıstıklı & Belçika Çikolatalı 3'lü Set — ₺480)", price: 480 },
+          { label: "Saray Lokumu & Cezerye Prestij Tepsisi (Çifte Kavrulmuş Fıstıklı, Narlı & Kaymaklı 1.5 Kg — ₺790)", price: 790 },
+          { label: "Aksaray Hatırası Büyük Hediye Sandığı (Pişmaniye + Lokum + Bakır Kahve Takımı + Hediyelik Magnet/Çini — ₺1.350)", price: 1350 }
+        ],
+        cfgStep2: [
+          { label: "Standart Aile & İkram Boyu (1 Kutu / ~1 Kg Net Lezzet)", addPrice: 0, multiplier: 1 },
+          { label: "Misafir & Hediye Boyu — 2'li Özel Teneke/Ahşap Set (+₺450 • %10 Avantajlı)", addPrice: 450, multiplier: 1 },
+          { label: "Gurbetçi & Çoklu Hediye Paketi — 5'li Vakumlu Set (+₺1.250 • Ücretsiz Kargo + Hediye Kolonya)", addPrice: 1250, multiplier: 1 },
+          { label: "Düğün, Nişan, Mevlit veya Kurumsal Toplu Sipariş (10+ Kutu Özel İskontolu Fiyatlandırma)", addPrice: 0, multiplier: 8.5 }
+        ],
+        cfgStep3: [
+          "Ekstra Boz Antep Fıstıklı & Sade Tereyağlı Klasik Seçki",
+          "Belçika Sütlü/Bitter Çikolata Kaplı Saray Pişmaniyesi & Fındıklı Lokum Ağırlıklı",
+          "Gül, Nar, Böğürtlen Aromalı Renkli & Meyveli Ferah Seçki",
+          "Yarı Yarıya: Hem Klasik Tereyağlı Hem Çikolatalı & Karışık Fitil Lokumlu"
+        ],
+        cfgAddon0: "Özel Vakumlu Tazelik Koruma Ambalajı & Aksaray Gülüm Prestij Çantası (Standart Hediye ✓)",
+        cfgAddon1: "El İşlemesi Bakır Cezve, 2'li Kahve Fincanı & Aksaray Hatıra Magneti Ekle (+₺380)",
+        cfgAddon2: "Aksaray Yöresel Köpük Helva, Tahin & Cevizli Sucuk (Köftür) Paketi Ekle (+₺260)",
+        cfgAddon3: "Özel Mühürlü Hediye Not Kartı, Kurdele Süslemesi & Kapıya Hızlı Kargo Gönderimi (+₺90)",
+        receiptBadge: "● CANLI KONFİGÜRATÖR ÖZETİ",
+        receiptTitle: "AKSARAY GÜLÜM // RESMİ SİPARİŞ & HEDİYE KUTUSU FİŞİ",
+        receiptLblBox: "SEÇİLEN KUTU KONSEPTİ:",
+        receiptLblSize: "BOYUT & GRAMAJ:",
+        receiptLblFlavor: "LEZZET TERCİHİ:",
+        receiptLblAddons: "HEDİYELİK EKLENTİLER:",
+        receiptNoteLabel: "TESLİMAT TÜRÜ / İSİM / ŞEHİR NOTUNUZ:",
+        receiptNotePlaceholder: "Örn: Ahmet Yılmaz - İstanbul Kargo veya Mağazadan Gel-Al",
+        receiptTotalLabel: "ANLIK HESAPLANAN TOPLAM TUTAR",
+        receiptBtnWhatsapp: "Siparişimi WhatsApp'tan Onayla & Hemen Hazırlat ↗",
+        receiptBtnPdf: "📄 Resmi Sipariş Fişimi & Kutu İçeriğini İndir (PDF / VIP Pass)",
+        xrayEyebrow: "// BÖLÜM B • İNTERAKTİF USTALIK & SUNUM PERDESİ",
+        xrayTitle: "GELENEKSEL BAKIR KAZAN USTALIĞI VS. MODERN VIP HEDİYELİK SUNUM // X-RAY KIYASLAMA",
+        xrayDesc: "Ortadaki altın sürgüyü sağa-sola kaydırarak asırlık bakır kazan tel çekim ustalığımız ile modern vakumlu VIP kutu sunumumuz arasındaki dönüşümü inceleyin.",
+        xrayLeftLabel: "GELENEKSEL BAKIR KAZAN, SAF TEREYAĞI & BİLEK GÜCÜYLE TEL ÇEKİMİ",
+        xrayLeftBadge: "GELENEKSEL BAKIR KAZAN, SAF TEREYAĞI & BİLEK GÜCÜYLE TEL ÇEKİMİ",
+        xrayRightLabel: "AKSARAY GÜLÜM MODERN ÇİKOLATALI, FISTIKLI & VAKUMLU VIP SUNUMU",
+        xrayRightBadge: "AKSARAY GÜLÜM MODERN ÇİKOLATALI, FISTIKLI & VAKUMLU VIP SUNUMU",
+        mapEyebrow: "// BÖLÜM C • İNTERAKTİF MAĞAZA & ÜRETİM PLANI",
+        mapTitle: "AKSARAY GÜLÜM LEZZET SARAYI // 5 REYON KEŞİF HARİTASI",
+        mapDesc: "Mimari reyon planı üzerindeki parlayan 01 - 05 numaralı noktalara tıklayarak mağazamızın özel lezzet ve hediyelik bölümlerini keşfedin.",
+        mapSvgHeader: "MİMARİ REYON PLANI // AKSARAY MERKEZ & KARAYOLU SHOWROOM",
+        hsCtaBtn: "Bu Reyon Ürünleriyle Kutu Tasarla ↓",
+        hotspots: [
+          {
+            code: "HOTSPOT 01 // AKTİF REYON",
+            title: "01 // SICAK PİŞMANİYE ÇEKİM & ÇİKOLATA KAPLAMA REYONU",
+            desc: "Günlük sıcak çekilen tel pişmaniyeler, Belçika çikolatası şelalesi ve taze kavrulmuş Antep fıstığı tezgahı. Ustalarımızın canlı performansıyla sıcak pişmaniye ikramı yapılır.",
+            bullets: ["✓ %100 Yayık Tereyağı & Doğal Pancar Şekeri", "✓ Sütlü ve Bitter Belçika Çikolata Kaplama Ünitesi", "✓ Anında Sıcak Tadım & Özel Teneke Kutu Dolumu"]
+          },
+          {
+            code: "HOTSPOT 02 // AKTİF REYON",
+            title: "02 // SARAY LOKUMU, CEZERYE & KÖPÜK HELVA MAHZENİ",
+            desc: "40 çeşit çifte kavrulmuş lokum, manda kaymaklı sarma, narlı fitil lokum, tahinli ve köpük helva reyonu. Boğazı yakmayan geleneksel reçetelerle günlük taze kesim.",
+            bullets: ["✓ %45 Oranında Birinci Sınıf Boz Antep Fıstığı", "✓ Gerçek Nar Suyu, Isparta Gül Yaprağı & Çıtır Kadayıf", "✓ Aksaray Geleneksel Sıcak Köpük & Susamlı Tahin Helvası"]
+          },
+          {
+            code: "HOTSPOT 03 // AKTİF REYON",
+            title: "03 // AKSARAY HEDİYELİK EŞYA, BAKIR & ÇİNİ GALERİSİ",
+            desc: "El işi bakır cezve ve fincan takımları, Ihlara Vadisi/Hasan Dağı hatıraları, el boyaması çini kaseler ve biblolar. Sevdiklerinize kalıcı bir Aksaray hatırası bırakın.",
+            bullets: ["✓ Kalaylı El Dövmeli Bakır Kahve & Lokum İkram Takımları", "✓ Ihlara Vadisi, Hasan Dağı & Selçuklu Motifli Magnet/Tabak", "✓ Kırılmaya Dayanıklı Özel Hediyelik Kutu Ambalajı"]
+          },
+          {
+            code: "HOTSPOT 04 // AKTİF REYON",
+            title: "04 // TAZE KURUYEMİŞ, DİBEK KAHVESİ & YÖRESEL PAZAR",
+            desc: "Sıcak kavrulmuş kuruyemişler, kakuleli Osmanlı dibek kahvesi, Aksaray köftürü, doğal bal ve pekmez seçkisi. Yöresel üreticilerden en doğal haliyle sofranızda.",
+            bullets: ["✓ Taş Değirmen Dibek, Menengiç & Damla Sakızlı Türk Kahvesi", "✓ Üzüm Pekmezli Doğal Aksaray Köftürü (Cevizli Sucuk)", "✓ Günlük Kavrulmuş Antep Fıstığı, Badem & Fındık Reyonu"]
+          },
+          {
+            code: "HOTSPOT 05 // AKTİF REYON",
+            title: "05 // VIP HEDİYE PAKETLEME & 81 İLE VAKUMLU KARGO MERKEZİ",
+            desc: "Söz/nişan tepsileri, gurbetçi uçak bagajı vakumlama ünitesi ve Türkiye geneli ekspres kargo çıkış noktası. Ürünleriniz aylarca ilk günkü tazeliğini korur.",
+            bullets: ["✓ Hava ve Nem Geçirmez Termal Vakum Mühürleme", "✓ Almanya, Fransa, Hollanda Uçak Bagajı Tam Uyumu", "✓ Saat 16:00'ya Kadar Verilen Siparişlerde Aynı Gün Kargo"]
+          }
+        ],
+        roadEyebrow: "// BÖLÜM D • ÜRETİMDEN KAPINIZA TAZELİK YOL HARİTASI",
+        roadTitle: "4 ADIMDA BAKIR KAZANDAN TÜRKİYE & AVRUPA'YA TAZELİK",
+        roadDesc: "Glikozsuz %100 pancar şekeriyle başlayan yolculuğumuzun, vakumlu tazelik zırhıyla kapınıza nasıl ulaştığını adımlara tıklayarak inceleyin.",
+        roadSpecHeader: "KALİTE & GÜVENCE PARAMETRESİ",
+        roadmapSteps: [
+          {
+            tab: "ADIM 01 // DOĞAL HAMMADDE",
+            title: "ADIM 01 (DOĞAL HAMMADDE) // %100 PANCAR ŞEKERİ, TEREYAĞI & BOZ FISTIK",
+            desc: "Üretimimizde kesinlikle glikoz şurubu veya yapay tatlandırıcı kullanılmaz; sadece doğal pancar şekeri, yayık tereyağı ve birinci sınıf Gaziantep boz iç fıstığı seçilir.",
+            metric: "%0 Glikoz • %100 Doğal",
+            sub: "GIDA MÜHENDİSLİĞİ ONAYLI HAMMADDE"
+          },
+          {
+            tab: "ADIM 02 // USTALIK & ÇEKİM",
+            title: "ADIM 02 (USTALIK & ÇEKİM) // BAKIR KAZANDA AĞDA & BİNBOĞA TEL ÇEKİMİ",
+            desc: "160°C'de kıvam alan şeker ağdası, ustalarımızın maharetli ellerinde tereyağlı kavrulmuş unla buluşarak binlerce ince ipek teline dönüştürülür.",
+            metric: "160°C Geleneksel Ağda",
+            sub: "BİNLERCE İPEK LİFİ DOKUSU"
+          },
+          {
+            tab: "ADIM 03 // VAKUMLU ZIRH",
+            title: "ADIM 03 (VAKUMLU ZIRH) // NEM VE HAVA GEÇİRMEZ ÖZEL AMBALAJLAMA",
+            desc: "Pişmaniyenin pamuksu dokusunu ve lokumun yumuşaklığını aylarca koruması için siparişiniz hazırlandığı an hava ve nem kesici özel folyo/teneke kutularla mühürlenir.",
+            metric: "6 Ay Tazelik Garantisi",
+            sub: "NEM VE HAVA BARİYERLİ VAKUM"
+          },
+          {
+            tab: "ADIM 04 // EKSPRES TESLİMAT",
+            title: "ADIM 04 (EKSPRES TESLİMAT) // AKSARAY MAĞAZADAN VEYA 81 İLE KARGODAN TESLİM",
+            desc: "İster Aksaray mağazamıza uğrayıp çayımız/kahvemiz eşliğinde sıcak sıcak teslim alın, ister özel darbe korumalı kolilerimizle Türkiye'nin her yerine kargolatalım.",
+            metric: "81 İl + Avrupa Bagaj",
+            sub: "DARBE EMİCİ ÖZEL KOLİLEME"
+          }
+        ],
+        catEyebrow: "// BÖLÜM E • 12 İMZALI KOLEKSİYON & ÜRÜN KATALOĞU",
+        catTitle: "SARAY PİŞMANİYESİ, LOKUM & HEDİYELİK EŞYA KOLEKSİYONU",
+        catDesc: "4 ana koleksiyon sekmemizden dilediğiniz ürünü inceleyin ve tek tıkla WhatsApp sipariş hattımızdan taze hazırlatın.",
+        catTabs: [
+          "[ PİŞMANİYE KOLEKSİYONU ]",
+          "[ SARAY LOKUMU & CEZERYE ]",
+          "[ AKSARAY HEDİYELİK EŞYA & YÖRESEL ]",
+          "[ VIP KUTULAR & ÖZEL GÜN PAKETLERİ ]"
+        ],
+        catOrderBtn: "Bu Ürünü WhatsApp'tan Sipariş Ver ↗",
+        products: [
+          // Tab 0
+          { img: "urun1.png", code: "PİS-01", badge: "EN ÇOK SATAN", title: "Tereyağlı & Bol Antep Fıstıklı Tel Pişmaniye", desc: "Ağızda pamuk gibi eriyen geleneksel Aksaray Gülüm pişmaniyesi, üzerinde bol kırık Antep fıstığı ile.", price: "500g / 1 Kg • ₺240'dan başlayan" },
+          { img: "urun2.png", code: "PİS-02", badge: "ÖZEL SERİ", title: "Belçika Çikolata Kaplı Saray Pişmaniyesi", desc: "Sütlü ve bitter gerçek Belçika çikolatasıyla kaplanmış, kahve yanına eşsiz uyum sağlayan küp pişmaniye.", price: "400g Özel Kutu • ₺290" },
+          { img: "urun3.png", code: "PİS-03", badge: "HEDİYELİK TENEKE", title: "Gül, Kakao, Fıstık & Sade 4'lü Prestij Kutu", desc: "Dört farklı lezzeti tek bir metal/ahşap hediyelik kutuda buluşturan uzun ömürlü özel seri.", price: "800g VIP Kutu • ₺380" },
+          // Tab 1
+          { img: "urun4.png", code: "LKM-01", badge: "%45 ANTEP FISTIĞI", title: "Çifte Kavrulmuş Hünkar Antep Fıstıklı Lokum", desc: "İçi tıka basa bütün Antep fıstığı dolu, dışı pudra şekerli veya Hindistan cevizli geleneksel saray lokumu.", price: "1 Kg Özel Kutu • ₺580" },
+          { img: "urun5.png", code: "LKM-02", badge: "GURME SEÇKİ", title: "Kadayıflı, Gül Yapraklı & Kaymaklı Sarma Lokum", desc: "Çıtır kavrulmuş kadayıf, doğal Isparta gül yaprakları ve zerzevat fıstıkla sarılmış sultan lokumları.", price: "1 Kg Karışık • ₺520" },
+          { img: "urun6.png", code: "LKM-03", badge: "ENERJİ DEPOSU", title: "Nar Sulu Fitil Lokum & Havuçlu Fıstıklı Cezerye", desc: "Gerçek nar suyundan çekilen ekşi-tatlı fitil lokumlar ve bol fıstıklı/fındıklı geleneksel cezerye.", price: "1 Kg Paket • ₺490" },
+          // Tab 2
+          { img: "urun7.png", code: "HDY-01", badge: "AKSARAY HATIRASI", title: "Aksaray, Ihlara & Hasan Dağı Hediyelik Obje Seti", desc: "El boyaması kabartmalı magnetler, çini tabaklar, Somuncu Baba ve Selçuklu motifli dekoratif hediyelik eşyalar.", price: "Özel Hediye Seti • ₺180'den başlayan" },
+          { img: "urun8.png", code: "HDY-02", badge: "EL İŞÇİLİĞİ BAKIR", title: "El Dövmeli Bakır Kahve Takımı & Çini Lokumluk", desc: "İki kişilik veya altılı el işlemeli bakır fincan seti, bakır cezve, tepsi ve kubbeli lokum ikramlığı.", price: "Tam Takım • ₺850" },
+          { img: "urun9.png", code: "YRS-03", badge: "YÖRESEL LEZZET", title: "Aksaray Köftürü (Cevizli Sucuk), Köpük & Tahinli Helva", desc: "Üzüm pekmezi ve kelebek cevizle hazırlanan doğal Aksaray köftürü, sıcak köpük helva ve taş değirmen tahin.", price: "Yöresel Paket • ₺390" },
+          // Tab 3
+          { img: "urun10.png", code: "VIP-01", badge: "KURUMSAL & HEDİYE", title: "Aksaray Gülüm Sultan Hediye Sandığı", desc: "İçinde fıstıklı pişmaniye, çifte kavrulmuş lokum, dibek kahvesi ve bakır fincan bulunan lüks hediye kutusu.", price: "VIP Sandık • ₺1.150" },
+          { img: "urun11.png", code: "VIP-02", badge: "SÖZ & NİŞAN", title: "Kız İsteme, Söz, Nişan & Bayram Gümüş Tepsi", desc: "Cam veya gümüş tepsi içinde çikolatalı pişmaniye ve duble fıstıklı lokumlardan oluşan kurdeleli merasim tepsisi.", price: "Özel Aranjman • ₺1.650" },
+          { img: "urun12.png", code: "VIP-03", badge: "GURBETÇİ PAKETİ", title: "Avrupa & Şehir Dışı 5'li Vakumlu Yolculuk Seti", desc: "Uçak bagajında ve uzun yolda asla bozulmayan, 5 ayrı vakumlu kutudan oluşan ekonomik hediye paketi.", price: "5 Kutu Set • ₺1.450" }
+        ],
+        bentoEyebrow: "// BÖLÜM F • KALİTE VE TAZELİK ANAYASASI",
+        bentoTitle: "GÜLÜM PİŞMANİYE KALİTE VE TAZELİK GÜVENCESİ",
+        bentoCards: [
+          {
+            heading: "01 // %0 GLİKOZ ŞURUBU & %100 DOĞAL PANCAR ŞEKERİ",
+            desc: "Ürünlerimizin hiçbirinde mısır şurubu, glikoz veya yapay koruyucu kullanılmaz; boğazı yakmayan, mideyi yormayan %100 doğal pancar şekeri ve hakiki tereyağı ile üretim yapılır.",
+            tag: "★ %100 DOĞAL İÇERİK"
+          },
+          {
+            heading: "02 // GÜNLÜK TAZE ÇEKİM & VAKUMLU TAZELİK MÜHRÜ",
+            desc: "Rafta aylarca beklemiş bayat ürünlere son. Pişmaniye ve lokumlarımız günlük taze üretilir, özel nem bariyerli paketlerle ilk günkü pamuksu dokusuyla korunur.",
+            tag: "★ GÜNLÜK TAZE ÜRETİM"
+          },
+          {
+            heading: "03 // AKSARAY'DAN 81 İLE AYNI GÜN KORUMALI KARGO",
+            desc: "Saat 16:00'ya kadar verilen tüm siparişler darbe emici özel kolilerle aynı gün kargoya teslim edilir; şehir dışındaki sevdiklerinize hediye notunuzla birlikte ulaştırılır.",
+            tag: "★ 81 İLE HIZLI KARGO"
+          },
+          {
+            heading: "04 // ZENGİN HEDİYELİK EŞYA & YÖRESEL ÜRÜN ÇEŞİTLİLİĞİ",
+            desc: "Sadece tatlı değil; Aksaray'dan eli boş dönmek istemeyen misafirlerimiz için yüzlerce çeşit yöresel hediyelik eşya, bakır/çini takımlar ve kuruyemiş tek çatı altında sunulur.",
+            tag: "★ TEK ÇATI ALTINDA HER ŞEY"
+          }
+        ],
+        footerBrandSub: "PİŞMANİYE & HEDİYELİK SARAYI",
+        footerAbout: "Aksaray'da günlük bakır kazan üretimi %100 tereyağlı tel pişmaniye, çifte kavrulmuş Antep fıstıklı saray lokumu, yöresel lezzetler ve otantik Aksaray hediyelik eşya merkezi.",
+        footerCol2Title: "MAĞAZA & ÜRETİM NOKTALARIMIZ",
+        footerLoc1: "📍 Aksaray Merkez Çarşı & Yöresel Hediyelik Showroom, Aksaray / Türkiye",
+        footerLoc2: "📍 E-90 Karayolu / Kapadokya - Ihlara Turizm Güzergahı Dinlenme & Satış Noktası",
+        footerHours: "ÇALIŞMA SAATLERİ: HER GÜN 07:30 — 23:00",
+        footerCol3Title: "ÜRÜN KATEGORİLERİMİZ",
+        footerCat1: "→ Tereyağlı & Çikolatalı Tel Pişmaniye",
+        footerCat2: "→ Çifte Kavrulmuş Saray Lokumu & Cezerye",
+        footerCat3: "→ Aksaray, Ihlara & Hasan Dağı Hediyelik Eşya",
+        footerCat4: "→ Gurbetçi Vakumlu Paketler & Söz/Nişan Tepsileri",
+        footerCol4Title: "SİPARİŞ & TOPTAN SATIŞ HATTI",
+        footerCol4Desc: "81 ile aynı gün darbe korumalı kargo, otobüs kargosu ve kurumsal toplu hediye siparişleriniz için:",
+        footerShipNote: "TÜRKİYE GENELİ & AVRUPA UÇAK BAGAJI VAKUM UYUMLU",
+        footerCopy: "© 2025 AKSARAY GÜLÜM PİŞMANİYE, LOKUM & HEDİYELİK EŞYA SARAYI. TÜM HAKLARI SAKLIDIR.",
+        footerCraft: "PLAKA 68 // AKSARAY GELENEKSEL LEZZET MİRASI",
+        awwaTop: "⚡ WEB MİMARİSİ & GELİŞTİRME",
+        awwaBottom: "Markanıza & Mağazanıza Özel Yeni Nesil 3D Sipariş Siteleri İçin Tıklayın →",
+        toastLang: "Dil Türkçe (TR) olarak güncellendi.",
+        toastConfig: "Kutu ve sipariş fişiniz anlık olarak güncellendi."
+      },
+
+      en: {
+        preloaderTitle: "AKSARAY GÜLÜM PİŞMANİYE • PALACE OF TRADITIONAL SWEETS & GIFTS",
+        preloaderSub: "PREPARING THE ROYAL CONFECTIONERY VAULT",
+        navBrandSub: "// FLOSS HALVA & SOUVENIRS",
+        navLink1: "Flavor Palace",
+        navLink2: "Build Gift Box",
+        navLink3: "Mastery X-Ray",
+        navLink4: "Store Departments",
+        navLink5: "Shipping Process",
+        navLink6: "Product Catalog",
+        navBadge: "Daily Fresh Production & Nationwide Shipping: Active",
+        navCta: "Quick Order",
+        heroEyebrow: "AKSARAY'S HISTORIC CONFECTIONERY & SOUVENIR PALACE • EST. AKSARAY",
+        heroMainTitle: "AKSARAY GÜLÜM PİŞMANİYE & TURKISH DELIGHT PALACE",
+        heroScrollHint: "↓ SCROLL TO EXPLORE 5 ROYAL COLLECTIONS",
+        heroCards: [
+          {
+            code: "01 // ARTISAN PİŞMANİYE MASTERY",
+            title: "Melt-in-Your-Mouth 100% Butter Spun Halva Mastery.",
+            desc: "Hand-pulled daily in copper cauldrons in Aksaray using 100% natural beet sugar (zero glucose), pure churned butter, and roasted Antep pistachios.",
+            footer: "✓ DAILY FRESH PULLED • 100% NATURAL SUGAR"
+          },
+          {
+            code: "02 // ROYAL TURKISH DELIGHT (LOKUM)",
+            title: "Double-Roasted Pistachio Imperial Turkish Delights.",
+            desc: "Over 40 artisan varieties from pomegranate and buffalo clotted cream to rose petals and crispy kadayıf, alongside authentic carrot cezerye.",
+            footer: "◆ ROASTED ANTEP PISTACHIO • 40+ VARIETIES"
+          },
+          {
+            code: "03 // AKSARAY SOUVENIRS & GIFTS",
+            title: "Authentic Souvenirs Carrying the Spirit of Aksaray.",
+            desc: "Handcrafted copper coffee sets, Ihlara Valley & Mount Hasan keepsakes, painted ceramic delight bowls, and regional gift boxes for your loved ones.",
+            footer: "✦ ARTISAN SOUVENIRS • AUTHENTIC KEEPSAKES"
+          },
+          {
+            code: "04 // EXPAT & WORLDWIDE VACUUM PACK",
+            title: "Vacuum-Sealed Freshness for Turkey & Europe Travel.",
+            desc: "Moisture-proof vacuum-sealed tin and wooden boxes designed for same-day shipping across all 81 provinces and international flight luggage.",
+            footer: "✓ VACUUM PROTECTION • EXPRESS SHIPPING"
+          },
+          {
+            code: "05 // CUSTOM GIFT BOX CONFIGURATOR",
+            title: "Design Your Custom Gift Box and Order Right Now.",
+            desc: "Combine your favorite pişmaniye, Turkish delight, and souvenirs in our interactive simulator below; download your VIP receipt as PDF or order via WhatsApp.",
+            btn1: "Open Box Configurator ↓",
+            btn2: "WhatsApp Order ↗"
+          }
+        ],
+        cfgEyebrow: "// SECTION A • INTERACTIVE ORDER & GIFT BOX SIMULATOR",
+        cfgTitle: "DESIGN YOUR CUSTOM GIFT BOX & ORDER",
+        cfgDesc: "Combine spun halva, double-roasted Turkish delight, regional delicacies, and Aksaray souvenirs in 4 steps; generate your official order pass instantly.",
+        cfgStep1Title: "STEP 01 // SELECT GIFT BOX & ORDER CONCEPT",
+        cfgStep2Title: "STEP 02 // SELECT WEIGHT, BOX SIZE & QUANTITY",
+        cfgStep3Title: "STEP 03 // CUSTOMIZE FLAVOR & ASSORTMENT",
+        cfgStep4Title: "STEP 04 // ADD SOUVENIRS, PRESENTATION & SHIPPING",
+        cfgStep1: [
+          { label: "Aksaray Gülüm VIP Mixed Assortment Box (Pişmaniye + Royal Lokum + Regional Halva — ₺650)", price: 650 },
+          { label: "Fresh Pişmaniye Trio Pack (Plain Butter, Antep Pistachio & Belgian Chocolate 3-Pack — ₺480)", price: 480 },
+          { label: "Royal Turkish Delight & Cezerye Prestige Tray (Double-Roasted Pistachio, Pomegranate & Cream 1.5 Kg — ₺790)", price: 790 },
+          { label: "Aksaray Heritage Grand Gift Chest (Pişmaniye + Lokum + Copper Coffee Set + Ceramic/Magnet — ₺1,350)", price: 1350 }
+        ],
+        cfgStep2: [
+          { label: "Standard Family & Hospitality Size (1 Box / ~1 Kg Net Confectionery)", addPrice: 0, multiplier: 1 },
+          { label: "Guest & Gift Edition — 2x Special Tin/Wooden Set (+₺450 • 10% Value Bonus)", addPrice: 450, multiplier: 1 },
+          { label: "Expat & Multi-Gift Pack — 5x Vacuum-Sealed Set (+₺1,250 • Free Shipping + Free Cologne)", addPrice: 1250, multiplier: 1 },
+          { label: "Wedding, Engagement or Corporate Bulk Order (10+ Boxes Special Discounted Rate)", addPrice: 0, multiplier: 8.5 }
+        ],
+        cfgStep3: [
+          "Extra Roasted Antep Pistachio & Classic Pure Butter Selection",
+          "Belgian Milk/Dark Chocolate Coated Pişmaniye & Hazelnut Lokum Focus",
+          "Rose Petal, Pomegranate & Blackberry Fruity Refreshing Selection",
+          "Half & Half: Classic Butter + Chocolate Pişmaniye & Assorted Roll Lokum"
+        ],
+        cfgAddon0: "Special Vacuum Freshness Seal & Aksaray Gülüm Prestige Gift Bag (Complimentary ✓)",
+        cfgAddon1: "Add Handcrafted Copper Ibrik, 2x Coffee Cups & Aksaray Magnet (+₺380)",
+        cfgAddon2: "Add Aksaray Regional Foam Halva, Tahini & Walnut Sausage (Köftür) Pack (+₺260)",
+        cfgAddon3: "Add Wax-Sealed Gift Note Card, Ribbon Wrapping & Express Doorstep Delivery (+₺90)",
+        receiptBadge: "● LIVE CONFIGURATOR SUMMARY",
+        receiptTitle: "AKSARAY GÜLÜM // OFFICIAL ORDER & GIFT BOX PASS",
+        receiptLblBox: "SELECTED BOX CONCEPT:",
+        receiptLblSize: "SIZE & WEIGHT:",
+        receiptLblFlavor: "FLAVOR PREFERENCE:",
+        receiptLblAddons: "SOUVENIR ADD-ONS:",
+        receiptNoteLabel: "DELIVERY TYPE / NAME / CITY NOTE:",
+        receiptNotePlaceholder: "e.g., John Doe - Istanbul Shipping or Store Pickup",
+        receiptTotalLabel: "INSTANT CALCULATED TOTAL",
+        receiptBtnWhatsapp: "Confirm My Order via WhatsApp & Prepare Fresh ↗",
+        receiptBtnPdf: "📄 Download Official Order Receipt & Box Dossier (PDF / VIP Pass)",
+        xrayEyebrow: "// SECTION B • INTERACTIVE CRAFTSMANSHIP & PRESENTATION SLIDER",
+        xrayTitle: "TRADITIONAL COPPER CAULDRON MASTERY VS. MODERN VIP PRESENTATION // X-RAY",
+        xrayDesc: "Drag the golden handle left and right to compare our century-old hand-pulled copper cauldron craft with our modern vacuum-sealed VIP gift presentation.",
+        xrayLeftLabel: "TRADITIONAL COPPER CAULDRON, PURE BUTTER & HAND-PULLED FLOSS MASTERY",
+        xrayLeftBadge: "TRADITIONAL COPPER CAULDRON, PURE BUTTER & HAND-PULLED FLOSS MASTERY",
+        xrayRightLabel: "AKSARAY GÜLÜM MODERN CHOCOLATE, PISTACHIO & VACUUM-SEALED VIP PRESENTATION",
+        xrayRightBadge: "AKSARAY GÜLÜM MODERN CHOCOLATE, PISTACHIO & VACUUM-SEALED VIP PRESENTATION",
+        mapEyebrow: "// SECTION C • INTERACTIVE STORE & PRODUCTION BLUEPRINT",
+        mapTitle: "AKSARAY GÜLÜM FLAVOR PALACE // 5-ZONE EXPLORER MAP",
+        mapDesc: "Click on the glowing hotspots 01 to 05 on the architectural floorplan to explore our specialized confectionery and souvenir departments.",
+        mapSvgHeader: "ARCHITECTURAL FLOORPLAN // AKSARAY CENTER & HIGHWAY SHOWROOM",
+        hsCtaBtn: "Design a Gift Box with This Department ↓",
+        hotspots: [
+          {
+            code: "HOTSPOT 01 // ACTIVE ZONE",
+            title: "01 // HOT PİŞMANİYE PULLING & CHOCOLATE COATING ZONE",
+            desc: "Daily warm hand-pulled floss halva, Belgian chocolate fountain, and freshly roasted Antep pistachio counter with live master demonstrations.",
+            bullets: ["✓ 100% Churned Butter & Natural Beet Sugar", "✓ Milk & Dark Belgian Chocolate Coating Station", "✓ Warm Tasting & Custom Tin Box Filling"]
+          },
+          {
+            code: "HOTSPOT 02 // ACTIVE ZONE",
+            title: "02 // ROYAL TURKISH DELIGHT, CEZERYE & FOAM HALVA VAULT",
+            desc: "40 varieties of double-roasted Turkish delight, buffalo cream rolls, pomegranate sticks, tahini halva, and traditional foam halva.",
+            bullets: ["✓ 45% First-Grade Green Antep Pistachio Ratio", "✓ Real Pomegranate Juice, Isparta Rose Petals & Kadayıf", "✓ Traditional Aksaray Warm Foam & Sesame Tahini Halva"]
+          },
+          {
+            code: "HOTSPOT 03 // ACTIVE ZONE",
+            title: "03 // AKSARAY SOUVENIRS, COPPER & CERAMIC GALLERY",
+            desc: "Hand-hammered copper coffee sets, Ihlara Valley & Mount Hasan keepsakes, hand-painted ceramic bowls, and Seljuk heritage gifts.",
+            bullets: ["✓ Tinned Hand-Forged Copper Coffee & Delight Sets", "✓ Ihlara Valley, Mount Hasan & Seljuk Motif Magnets/Plates", "✓ Shockproof Luxury Gift Packaging"]
+          },
+          {
+            code: "HOTSPOT 04 // ACTIVE ZONE",
+            title: "04 // FRESH ROASTED NUTS, DİBEK COFFEE & REGIONAL MARKET",
+            desc: "Warm roasted nuts, Ottoman cardamom dibek coffee, Aksaray walnut köftür, natural honey, and grape molasses direct from local farms.",
+            bullets: ["✓ Stone-Ground Dibek, Menengiç & Mastic Gum Turkish Coffee", "✓ Natural Grape Molasses Aksaray Köftür (Walnut Roll)", "✓ Daily Roasted Pistachios, Almonds & Hazelnuts"]
+          },
+          {
+            code: "HOTSPOT 05 // ACTIVE ZONE",
+            title: "05 // VIP GIFT PACKAGING & 81-PROVINCE VACUUM CARGO HUB",
+            desc: "Engagement trays, international flight luggage vacuum sealing unit, and nationwide express shipping dispatch center.",
+            bullets: ["✓ Airtight & Moisture-Proof Thermal Vacuum Sealing", "✓ Full Compliance with EU / International Flight Luggage", "✓ Same-Day Dispatch for Orders Placed Before 16:00"]
+          }
+        ],
+        roadEyebrow: "// SECTION D • FROM CAULDRON TO DOORSTEP FRESHNESS ROADMAP",
+        roadTitle: "FRESHNESS FROM COPPER CAULDRON TO TURKEY & EUROPE IN 4 STEPS",
+        roadDesc: "Click through the 4 stages to see how our zero-glucose 100% beet sugar delicacies travel safely to your table with vacuum armor.",
+        roadSpecHeader: "QUALITY & ASSURANCE PARAMETER",
+        roadmapSteps: [
+          {
+            tab: "STEP 01 // NATURAL INGREDIENTS",
+            title: "STEP 01 (NATURAL RAW MATERIALS) // 100% BEET SUGAR, BUTTER & PISTACHIO",
+            desc: "We never use glucose syrup or artificial sweeteners; only 100% natural beet sugar, pure churned butter, and premium Gaziantep pistachios are selected.",
+            metric: "0% Glucose • 100% Natural",
+            sub: "FOOD ENGINEERING CERTIFIED INGREDIENTS"
+          },
+          {
+            tab: "STEP 02 // ARTISAN PULLING",
+            title: "STEP 02 (MASTERY & PULLING) // COPPER CAULDRON & THOUSAND-STRAND PULL",
+            desc: "Simmered at 160°C, the sugar wax meets butter-roasted flour in our masters' hands and transforms into thousands of delicate silk strands.",
+            metric: "160°C Traditional Wax",
+            sub: "THOUSANDS OF SILK SUGAR FIBERS"
+          },
+          {
+            tab: "STEP 03 // VACUUM ARMOR",
+            title: "STEP 03 (VACUUM ARMOR) // MOISTURE & AIRTIGHT SPECIAL PACKAGING",
+            desc: "To preserve the cotton-soft texture of pişmaniye and softness of lokum for months, every box is sealed with airtight foil and tin armor immediately.",
+            metric: "6-Month Freshness Seal",
+            sub: "MOISTURE & OXYGEN BARRIER VACUUM"
+          },
+          {
+            tab: "STEP 04 // EXPRESS DELIVERY",
+            title: "STEP 04 (EXPRESS DELIVERY) // AKSARAY STORE PICKUP OR NATIONWIDE CARGO",
+            desc: "Visit our Aksaray showroom for warm pickup with complimentary tea/coffee, or let us ship nationwide in shock-absorbing protective boxes.",
+            metric: "81 Provinces + EU Luggage",
+            sub: "IMPACT-RESISTANT THERMAL PARCEL"
+          }
+        ],
+        catEyebrow: "// SECTION E • 12 SIGNATURE COLLECTIONS & PRODUCT CATALOG",
+        catTitle: "ROYAL PİŞMANİYE, TURKISH DELIGHT & SOUVENIR COLLECTION",
+        catDesc: "Browse our 4 signature category tabs and order any delicacy freshly prepared via WhatsApp with a single click.",
+        catTabs: [
+          "[ PİŞMANİYE COLLECTION ]",
+          "[ ROYAL LOKUM & CEZERYE ]",
+          "[ AKSARAY SOUVENIRS & REGIONAL ]",
+          "[ VIP BOXES & CEREMONY PACKS ]"
+        ],
+        catOrderBtn: "Order This Product via WhatsApp ↗",
+        products: [
+          { img: "urun1.png", code: "PİS-01", badge: "BEST SELLER", title: "Pure Butter & Antep Pistachio Spun Pişmaniye", desc: "Traditional Aksaray Gülüm floss halva that melts like cotton in your mouth, topped with generous crushed pistachios.", price: "500g / 1 Kg • Starting from ₺240" },
+          { img: "urun2.png", code: "PİS-02", badge: "SPECIAL EDITION", title: "Belgian Chocolate Coated Royal Pişmaniye", desc: "Bite-sized spun halva cubes enrobed in real milk and dark Belgian chocolate—perfect alongside coffee.", price: "400g Special Box • ₺290" },
+          { img: "urun3.png", code: "PİS-03", badge: "GIFT TIN BOX", title: "Rose, Cocoa, Pistachio & Plain 4-Flavor Prestige Box", desc: "Long-lasting luxury metal/wooden gift box bringing four signature flavors together.", price: "800g VIP Box • ₺380" },
+          { img: "urun4.png", code: "LKM-01", badge: "45% PISTACHIO", title: "Double-Roasted Imperial Antep Pistachio Lokum", desc: "Packed with whole roasted Antep pistachios, dusted with powdered sugar or shredded coconut.", price: "1 Kg Special Box • ₺580" },
+          { img: "urun5.png", code: "LKM-02", badge: "GOURMET PICK", title: "Kadayıf, Rose Petal & Clotted Cream Roll Lokum", desc: "Sultan delight rolls wrapped in crispy roasted kadayıf, natural Isparta rose petals, and pistachio.", price: "1 Kg Assorted • ₺520" },
+          { img: "urun6.png", code: "LKM-03", badge: "ENERGY BOOST", title: "Pomegranate Stick Lokum & Carrot Pistachio Cezerye", desc: "Sweet-tart pomegranate juice roll delights paired with pistachio-rich traditional carrot cezerye.", price: "1 Kg Pack • ₺490" },
+          { img: "urun7.png", code: "HDY-01", badge: "AKSARAY KEEPSAKE", title: "Aksaray, Ihlara & Mount Hasan Souvenir Set", desc: "Hand-painted embossed magnets, ceramic plates, Somuncu Baba and Seljuk motif decorative keepsakes.", price: "Special Gift Set • Starting from ₺180" },
+          { img: "urun8.png", code: "HDY-02", badge: "HANDCRAFTED COPPER", title: "Hand-Hammered Copper Coffee Set & Ceramic Delight Bowl", desc: "2-person or 6-person engraved copper coffee cup set, copper ibrik, tray, and domed lokum server.", price: "Full Set • ₺850" },
+          { img: "urun9.png", code: "YRS-03", badge: "REGIONAL TASTE", title: "Aksaray Köftür (Walnut Roll), Foam & Tahini Halva", desc: "Natural grape molasses walnut köftür, warm Aksaray foam halva, and stone-milled sesame tahini.", price: "Regional Pack • ₺390" },
+          { img: "urun10.png", code: "VIP-01", badge: "CORPORATE & GIFT", title: "Aksaray Gülüm Sultan Gift Chest", desc: "Luxury presentation chest containing pistachio pişmaniye, double-roasted lokum, dibek coffee, and copper cups.", price: "VIP Chest • ₺1,150" },
+          { img: "urun11.png", code: "VIP-02", badge: "ENGAGEMENT TRAY", title: "Promise, Engagement & Holiday Silver Ceremony Tray", desc: "Ribbon-adorned glass or silver tray filled with chocolate pişmaniye and double-pistachio delights.", price: "Custom Arrangement • ₺1,650" },
+          { img: "urun12.png", code: "VIP-03", badge: "EXPAT TRAVEL PACK", title: "Europe & Long-Distance 5-Box Vacuum Travel Set", desc: "Unbreakable, moisture-proof 5-box vacuum bundle engineered for international flight luggage.", price: "5-Box Set • ₺1,450" }
+        ],
+        bentoEyebrow: "// SECTION F • CONSTITUTION OF QUALITY & FRESHNESS",
+        bentoTitle: "GÜLÜM PİŞMANİYE QUALITY & FRESHNESS GUARANTEE",
+        bentoCards: [
+          {
+            heading: "01 // 0% GLUCOSE SYRUP & 100% NATURAL BEET SUGAR",
+            desc: "Zero corn syrup, glucose, or artificial preservatives are ever used; crafted exclusively with 100% natural beet sugar and pure butter that never burns the throat.",
+            tag: "★ 100% NATURAL INGREDIENTS"
+          },
+          {
+            heading: "02 // DAILY FRESH PULLING & VACUUM FRESHNESS SEAL",
+            desc: "Say goodbye to stale shelf products. Our pişmaniye and delights are produced fresh daily and locked in moisture-barrier packaging.",
+            tag: "★ DAILY FRESH PRODUCTION"
+          },
+          {
+            heading: "03 // SAME-DAY PROTECTED SHIPPING TO ALL 81 PROVINCES",
+            desc: "All orders placed before 16:00 are shipped the very same day in shock-absorbing parcels alongside your personalized gift card.",
+            tag: "★ EXPRESS NATIONWIDE SHIPPING"
+          },
+          {
+            heading: "04 // RICH SOUVENIR & REGIONAL DELICACY VARIETY",
+            desc: "More than sweets—hundreds of authentic Aksaray souvenirs, handcrafted copper/ceramic sets, and roasted nuts under one roof.",
+            tag: "★ EVERYTHING UNDER ONE ROOF"
+          }
+        ],
+        footerBrandSub: "PALACE OF SWEETS & SOUVENIRS",
+        footerAbout: "Daily copper cauldron 100% butter spun halva, double-roasted Antep pistachio Turkish delight, regional delicacies, and authentic Aksaray souvenirs.",
+        footerCol2Title: "OUR SHOWROOM & PRODUCTION HUBS",
+        footerLoc1: "📍 Aksaray Central Bazaar & Regional Souvenir Showroom, Aksaray / Turkey",
+        footerLoc2: "📍 E-90 Highway / Cappadocia - Ihlara Tourist Route Lounge & Store",
+        footerHours: "OPENING HOURS: DAILY 07:30 — 23:00",
+        footerCol3Title: "PRODUCT CATEGORIES",
+        footerCat1: "→ Butter & Belgian Chocolate Spun Pişmaniye",
+        footerCat2: "→ Double-Roasted Royal Turkish Delight & Cezerye",
+        footerCat3: "→ Aksaray, Ihlara & Mount Hasan Souvenirs",
+        footerCat4: "→ Expat Vacuum Packs & Engagement Trays",
+        footerCol4Title: "ORDER & WHOLESALE HOTLINE",
+        footerCol4Desc: "For same-day shockproof nationwide shipping, bus cargo, and corporate gift orders:",
+        footerShipNote: "NATIONWIDE TURKEY & EUROPE FLIGHT LUGGAGE VACUUM READY",
+        footerCopy: "© 2025 AKSARAY GÜLÜM PİŞMANİYE, LOKUM & SOUVENIR PALACE. ALL RIGHTS RESERVED.",
+        footerCraft: "PLATE 68 // AKSARAY TRADITIONAL CULINARY HERITAGE",
+        awwaTop: "⚡ WEB ARCHITECTURE & DEVELOPMENT",
+        awwaBottom: "Click for Next-Gen 3D Order Websites Tailored for Your Brand & Store →",
+        toastLang: "Language switched to English (EN).",
+        toastConfig: "Your custom gift box and receipt have been updated."
+      },
+
+      ru: {
+        preloaderTitle: "AKSARAY GÜLÜM PİŞMANİYE • ДВОРЕЦ ТРАДИЦИОННЫХ СЛАДОСТЕЙ И СУВЕНИРОВ",
+        preloaderSub: "ПОДГОТОВКА ИМПЕРАТОРСКОЙ СОКРОВИЩНИЦЫ ВКУСА",
+        navBrandSub: "// ПИШМАНИЕ И СУВЕНИРЫ",
+        navLink1: "Дворец Вкуса",
+        navLink2: "Собрать Коробку",
+        navLink3: "Мастерство X-Ray",
+        navLink4: "Отделы Магазина",
+        navLink5: "Доставка",
+        navLink6: "Каталог",
+        navBadge: "Ежедневное Свежее Производство и Доставка: Активно",
+        navCta: "Быстрый Заказ",
+        heroEyebrow: "ИСТОРИЧЕСКИЙ ДВОРЕЦ СЛАДОСТЕЙ И СУВЕНИРОВ АКСАРАЯ • EST. AKSARAY",
+        heroMainTitle: "AKSARAY GÜLÜM // ДВОРЕЦ ПИШМАНИЕ И ЛУКУМА",
+        heroScrollHint: "↓ ЛИСТАЙТЕ ВНИЗ, ЧТОБЫ ОТКРЫТЬ 5 КОЛЛЕКЦИЙ",
+        heroCards: [
+          {
+            code: "01 // ARTISAN PİŞMANİYE MASTERY",
+            title: "Тающее во Рту Нитевидное Пишмание на 100% Сливочном Масле.",
+            desc: "Ежедневно готовится в медных котлах в Аксарае из 100% натурального свекловичного сахара без глюкозы, чистого масла и антепских фисташек.",
+            footer: "✓ СВЕЖАЯ ВЫТЯЖКА • 100% НАТУРАЛЬНЫЙ САХАР"
+          },
+          {
+            code: "02 // ROYAL TURKISH DELIGHT (LOKUM)",
+            title: "Дворцовый Рахат-Лукум Двойной Обжарки с Фисташками.",
+            desc: "Более 40 видов свежего лукума и джезерье: от гранатового сока и буйволиных сливок до лепестков роз и хрустящего кадаифа.",
+            footer: "◆ ОТБОРНАЯ ФИСТАШКА • 40+ СОРТОВ"
+          },
+          {
+            code: "03 // AKSARAY SOUVENIRS & GIFTS",
+            title: "Аутентичные Сувениры, Хранящие Душу Аксарая.",
+            desc: "Чеканные медные кофейные наборы, сувениры долины Ихлара и горы Хасан, расписные керамические лукумницы и подарочные наборы.",
+            footer: "✦ СУВЕНИРЫ РУЧНОЙ РАБОТЫ • ПАМЯТЬ ОБ АКСАРАЕ"
+          },
+          {
+            code: "04 // GURBETÇİ & TÜRKİYE KARGO PAKETİ",
+            title: "Вакуумная Упаковка для Доставки по Турции и в Европу.",
+            desc: "Влагонепроницаемые вакуумные жестяные и деревянные коробки для быстрой доставки в 81 провинцию и провоза в багаже самолета.",
+            footer: "✓ ВАКУУМНАЯ ЗАЩИТА • ЭКСПРЕСС-ДОСТАВКА"
+          },
+          {
+            code: "05 // CUSTOM GIFT BOX CONFIGURATOR",
+            title: "Создайте Свою Подарочную Коробку и Заказ Прямо Сейчас.",
+            desc: "Объедините любимое пишмание, лукум и сувениры в интерактивном конструкторе ниже; скачайте PDF-квитанцию или закажите в WhatsApp.",
+            btn1: "Открыть Конструктор ↓",
+            btn2: "Заказ в WhatsApp ↗"
+          }
+        ],
+        cfgEyebrow: "// РАЗДЕЛ A • ИНТЕРАКТИВНЫЙ КОНСТРУКТОР ЗАКАЗА И КОРОБКИ",
+        cfgTitle: "СОБЕРИТЕ СВОЙ ПОДАРОЧНЫЙ НАБОР И ЗАКАЗ",
+        cfgDesc: "Объедините пишмание, дворцовый лукум, местные деликатесы и сувениры Аксарая за 4 шага и мгновенно получите официальный чек заказа.",
+        cfgStep1Title: "ШАГ 01 // ВЫБОР КОНЦЕПЦИИ ПОДАРОЧНОЙ КОРОБКИ",
+        cfgStep2Title: "ШАГ 02 // ВЕС, РАЗМЕР КОРОБКИ И КОЛИЧЕСТВО",
+        cfgStep3Title: "ШАГ 03 // НАСТРОЙКА ВКУСОВ И СОСТАВА",
+        cfgStep4Title: "ШАГ 04 // СУВЕНИРЫ, ОФОРМЛЕНИЕ И ДОСТАВКА",
+        cfgStep1: [
+          { label: "VIP Набор Ассорти Aksaray Gülüm (Пишмание + Лукум + Местная Халва — ₺650)", price: 650 },
+          { label: "Набор Свежего Пишмание (Сливочное, Фисташковое и Бельгийский Шоколад 3 шт. — ₺480)", price: 480 },
+          { label: "Престижный Поднос Дворцового Лукума и Джезерье (Фисташка, Гранат и Сливки 1.5 кг — ₺790)", price: 790 },
+          { label: "Большой Сундук «Память Аксарая» (Пишмание + Лукум + Медный Кофейный Набор + Керамика — ₺1.350)", price: 1350 }
+        ],
+        cfgStep2: [
+          { label: "Стандартный Семейный Размер (1 Коробка / ~1 кг Чистого Вкуса)", addPrice: 0, multiplier: 1 },
+          { label: "Гостевой и Подарочный Набор — 2 Жестяные/Деревянные Коробки (+₺450 • Выгода 10%)", addPrice: 450, multiplier: 1 },
+          { label: "Дорожный Вакуумный Набор из 5 Коробок (+₺1.250 • Бесплатная Доставка + Одеколон)", addPrice: 1250, multiplier: 1 },
+          { label: "Свадебный или Корпоративный Оптовый Заказ (10+ Коробок со Специальной Скидкой)", addPrice: 0, multiplier: 8.5 }
+        ],
+        cfgStep3: [
+          "Классический Выбор: Экстра Антепская Фисташка и Чистое Сливочное Масло",
+          "Пишмание в Молочном/Темном Бельгийском Шоколаде и Ореховый Лукум",
+          "Фруктово-Ягодная Коллекция: Роза, Гранат и Ежевика",
+          "50 на 50: Классическое Сливочное + Шоколадное Пишмание и Рулеты Лукума"
+        ],
+        cfgAddon0: "Специальная Вакуумная Защита Свежести и Фирменный Пакет Aksaray Gülüm (В Подарок ✓)",
+        cfgAddon1: "Добавить Чеканную Медную Турку, 2 Кофейные Чашки и Магнит Аксарая (+₺380)",
+        cfgAddon2: "Добавить Пакет: Воздушная Халва, Тахини и Грецкий Суджук Кёфтюр (+₺260)",
+        cfgAddon3: "Добавить Открытку с Сургучной Печатью, Ленту и Экспресс-Доставку до Двери (+₺90)",
+        receiptBadge: "● СВОДКА КОНФИГУРАТОРА В РЕАЛЬНОМ ВРЕМЕНИ",
+        receiptTitle: "AKSARAY GÜLÜM // ОФИЦИАЛЬНЫЙ ЧЕК И СЕРТИФИКАТ ЗАКАЗА",
+        receiptLblBox: "ВЫБРАННАЯ КОНЦЕПЦИЯ:",
+        receiptLblSize: "РАЗМЕР И ВЕС:",
+        receiptLblFlavor: "ВЫБРАННЫЙ ВКУС:",
+        receiptLblAddons: "ДОПОЛНЕНИЯ И СУВЕНИРЫ:",
+        receiptNoteLabel: "ТИП ДОСТАВКИ / ИМЯ / ГОРОД:",
+        receiptNotePlaceholder: "Напр.: Иван Петров - Доставка в Стамбул или Самовывоз",
+        receiptTotalLabel: "ИТОГОВАЯ СУММА К ОПЛАТЕ",
+        receiptBtnWhatsapp: "Подтвердить Заказ в WhatsApp и Приготовить Свежим ↗",
+        receiptBtnPdf: "📄 Скачать Официальный Чек и Состав Коробки (PDF / VIP Pass)",
+        xrayEyebrow: "// РАЗДЕЛ B • ИНТЕРАКТИВНОЕ СРАВНЕНИЕ МАСТЕРСТВА И ПОДАЧИ",
+        xrayTitle: "ТРАДИЦИОННЫЙ МЕДНЫЙ КОТЕЛ VS. СОВРЕМЕННАЯ VIP ПОДАЧА // X-RAY",
+        xrayDesc: "Передвигайте золотой ползунок, чтобы сравнить вековое ремесло вытяжки нитей пишмание вручную и современную вакуумную VIP-упаковку.",
+        xrayLeftLabel: "ТРАДИЦИОННЫЙ МЕДНЫЙ КОТЕЛ, ЧИСТОЕ МАСЛО И РУЧНАЯ ВЫТЯЖКА НИТЕЙ",
+        xrayLeftBadge: "ТРАДИЦИОННЫЙ МЕДНЫЙ КОТЕЛ, ЧИСТОЕ МАСЛО И РУЧНАЯ ВЫТЯЖКА НИТЕЙ",
+        xrayRightLabel: "СОВРЕМЕННАЯ ШОКОЛАДНАЯ, ФИСТАШКОВАЯ И ВАКУУМНАЯ VIP ПОДАЧА AKSARAY GÜLÜM",
+        xrayRightBadge: "СОВРЕМЕННАЯ ШОКОЛАДНАЯ, ФИСТАШКОВАЯ И ВАКУУМНАЯ VIP ПОДАЧА AKSARAY GÜLÜM",
+        mapEyebrow: "// РАЗДЕЛ C • ИНТЕРАКТИВНЫЙ ПЛАН МАГАЗИНА И ЦЕХА",
+        mapTitle: "ДВОРЕЦ ВКУСА AKSARAY GÜLÜM // КАРТА 5 ОТДЕЛОВ",
+        mapDesc: "Нажимайте на светящиеся точки 01 - 05 на архитектурном плане, чтобы изучить отделы сладостей и сувениров.",
+        mapSvgHeader: "АРХИТЕКТУРНЫЙ ПЛАН // ЦЕНТР АКСАРАЯ И ШОУРУМ НА ТРАССЕ E-90",
+        hsCtaBtn: "Собрать Коробку с Продуктами Этого Отдела ↓",
+        hotspots: [
+          {
+            code: "ТОЧКА 01 // АКТИВНЫЙ ОТДЕЛ",
+            title: "01 // ОТДЕЛ ГОРЯЧЕЙ ВЫТЯЖКИ ПИШМАНИЕ И ШОКОЛАДНОГО ГЛАЗИРОВАНИЯ",
+            desc: "Ежедневная горячая вытяжка пишмание, фонтан из бельгийского шоколада и стойка со свежеобжаренными антепскими фисташками.",
+            bullets: ["✓ 100% Сливочное Масло и Натуральный Свекловичный Сахар", "✓ Глазирование Молочным и Темным Бельгийским Шоколадом", "✓ Горячая Дегустация и Фасовка в Жестяные Коробки"]
+          },
+          {
+            code: "ТОЧКА 02 // АКТИВНЫЙ ОТДЕЛ",
+            title: "02 // СОКРОВИЩНИЦА ДВОРЦОВОГО ЛУКУМА, ДЖЕЗЕРЬЕ И ХАЛВЫ",
+            desc: "40 сортов лукума двойной обжарки, рулеты со сливками, гранатовый фитиль-лукум, кунжутная и воздушная халва.",
+            bullets: ["✓ Содержание Отборной Антепской Фисташки до 45%", "✓ Натуральный Гранатовый Сок, Лепестки Роз Испарты и Кадаиф", "✓ Традиционная Горячая Воздушная и Тахинная Халва Аксарая"]
+          },
+          {
+            code: "ТОЧКА 03 // АКТИВНЫЙ ОТДЕЛ",
+            title: "03 // ГАЛЕРЕЯ СУВЕНИРОВ АКСАРАЯ, МЕДИ И КЕРАМИКИ",
+            desc: "Кованые медные турки и кофейные пары, сувениры долины Ихлара и вулкана Хасан, расписные керамические чаши.",
+            bullets: ["✓ Луженые Медные Наборы Ручной Ковки для Кофе и Лукума", "✓ Магниты и Тарелки с Мотивами Ихлара, Хасан-Даг и Сельджуков", "✓ Ударопрочная Подарочная Упаковка"]
+          },
+          {
+            code: "ТОЧКА 04 // АКТИВНЫЙ ОТДЕЛ",
+            title: "04 // СВЕЖИЕ ОРЕХИ, КОФЕ ДИБЕК И ФЕРМЕРСКИЙ РЫНОК",
+            desc: "Горячие обжаренные орехи, османский кофе дибек с кардамоном, аксарайский кёфтюр, натуральный мед и бекмез.",
+            bullets: ["✓ Молотый на Жерновах Кофе Дибек, Мененгич и Кофе с Мастикой", "✓ Натуральный Виноградный Кёфтюр с Грецким Орехом", "✓ Ежедневная Обжарка Фисташек, Миндаля и Фундука"]
+          },
+          {
+            code: "ТОЧКА 05 // АКТИВНЫЙ ОТДЕЛ",
+            title: "05 // ЦЕНТР VIP-УПАКОВКИ И ВАКУУМНОЙ ОТПРАВКИ В 81 ПРОВИНЦИЮ",
+            desc: "Подносы для помолвки, вакуумная упаковка для авиабагажа и центр экспресс-доставки по всей Турции.",
+            bullets: ["✓ Герметичная Влагозащитная Термовакуумная Упаковка", "✓ Полное Соответствие Нормам Авиабагажа в Европу и СНГ", "✓ Отправка в День Заказа при Оформлении до 16:00"]
+          }
+        ],
+        roadEyebrow: "// РАЗДЕЛ D • ПУТЬ СВЕЖЕСТИ ОТ КОТЛА ДО ВАШЕЙ ДВЕРИ",
+        roadTitle: "4 ШАГА СВЕЖЕСТИ ОТ МЕДНОГО КОТЛА ДО ТУРЦИИ И ЕВРОПЫ",
+        roadDesc: "Нажимайте на этапы, чтобы узнать, как наши сладости без глюкозы доставляются в вакуумной броне.",
+        roadSpecHeader: "ПАРАМЕТР КАЧЕСТВА И ГАРАНТИИ",
+        roadmapSteps: [
+          {
+            tab: "ШАГ 01 // НАТУРАЛЬНОЕ СЫРЬЕ",
+            title: "ШАГ 01 (НАТУРАЛЬНОЕ СЫРЬЕ) // 100% СВЕКЛОВИЧНЫЙ САХАР, МАСЛО И ФИСТАШКИ",
+            desc: "Мы никогда не используем глюкозный сироп или искусственные добавки — только натуральный свекловичный сахар, чистое масло и фисташки Газиантепа.",
+            metric: "0% Глюкозы • 100% Натур.",
+            sub: "СЕРТИФИЦИРОВАННОЕ СЫРЬЕ ВЫСШЕГО СОРТА"
+          },
+          {
+            tab: "ШАГ 02 // РУЧНАЯ ВЫТЯЖКА",
+            title: "ШАГ 02 (МАСТЕРСТВО) // КАРАМЕЛЬ В МЕДНОМ КОТЛЕ И ТЫСЯЧИ ШЕЛКОВЫХ НИТЕЙ",
+            desc: "Разогретая до 160°C сахарная карамель соединяется с обжаренной на масле мукой в руках мастеров, превращаясь в тысячи тончайших нитей.",
+            metric: "160°C Медный Котел",
+            sub: "ТЫСЯЧИ ШЕЛКОВЫХ САХАРНЫХ ВОЛОКОН"
+          },
+          {
+            tab: "ШАГ 03 // ВАКУУМНАЯ БРОНЯ",
+            title: "ШАГ 03 (ВАКУУМНАЯ БРОНЯ) // ГЕРМЕТИЧНАЯ ЗАЩИТА ОТ ВЛАГИ И ВОЗДУХА",
+            desc: "Чтобы сохранить воздушность пишмание и мягкость лукума на долгие месяцы, заказ сразу герметизируется в фольгированные и жестяные боксы.",
+            metric: "6 Месяцев Свежести",
+            sub: "ВАКУУМНЫЙ БАРЬЕР ОТ ВЛАГИ И КИСЛОРОДА"
+          },
+          {
+            tab: "ШАГ 04 // ЭКСПРЕСС-ДОСТАВКА",
+            title: "ШАГ 04 (ДОСТАВКА) // САМОВЫВОЗ В АКСАРАЕ ИЛИ ДОСТАВКА В 81 ПРОВИНЦИЮ",
+            desc: "Заберите теплый заказ в нашем шоуруме в Аксарае за чашкой чая/кофе или закажите доставку в противоударных термокоробках.",
+            metric: "81 Провинция + Авиабагаж",
+            sub: " ЗАЩИТНАЯ УДАРОПРОЧНАЯ УПАКОВКА"
+          }
+        ],
+        catEyebrow: "// РАЗДЕЛ E • 12 ФИРМЕННЫХ ПОЗИЦИЙ И КАТАЛОГ ПРОДУКЦИИ",
+        catTitle: "КОЛЛЕКЦИЯ ДВОРЦОВОГО ПИШМАНИЕ, ЛУКУМА И СУВЕНИРОВ",
+        catDesc: "Выберите одну из 4 категорий ниже и закажите свежие сладости через WhatsApp в один клик.",
+        catTabs: [
+          "[ КОЛЛЕКЦИЯ ПИШМАНИЕ ]",
+          "[ ДВОРЦОВЫЙ ЛУКУМ И ДЖЕЗЕРЬЕ ]",
+          "[ СУВЕНИРЫ АКСАРАЯ И ДЕЛИКАТЕСЫ ]",
+          "[ VIP КОРОБКИ И ПОДАРОЧНЫЕ НАБОРЫ ]"
+        ],
+        catOrderBtn: "Заказать Этот Товар в WhatsApp ↗",
+        products: [
+          { img: "urun1.png", code: "PİS-01", badge: "ХИТ ПРОДАЖ", title: "Сливочное Нитевидное Пишмание с Антепской Фисташкой", desc: "Традиционное воздушное пишмание Aksaray Gülüm, тающее во рту, обильно посыпанное дробленой фисташкой.", price: "500г / 1 кг • от ₺240" },
+          { img: "urun2.png", code: "PİS-02", badge: "СПЕЦСЕРИЯ", title: "Дворцовое Пишмание в Бельгийском Шоколаде", desc: "Кубики нежного пишмание, покрытые настоящим молочным и темным бельгийским шоколадом — идеально к кофе.", price: "400г Спецкоробка • ₺290" },
+          { img: "urun3.png", code: "PİS-03", badge: "ЖЕСТЯНОЙ БОКС", title: "Престиж-Бокс 4 Вкуса: Роза, Какао, Фисташка и Классика", desc: "Четыре фирменных вкуса в одной долговечной подарочной металлической/деревянной коробке.", price: "800г VIP Коробка • ₺380" },
+          { img: "urun4.png", code: "LKM-01", badge: "45% ФИСТАШКИ", title: "Султанский Лукум Двойной Обжарки с Цельной Фисташкой", desc: "Традиционный дворцовый лукум, щедро наполненный цельной антепской фисташкой в сахарной пудре или кокосе.", price: "1 кг Спецкоробка • ₺580" },
+          { img: "urun5.png", code: "LKM-02", badge: "ГУРМЭ ВЫБОР", title: "Рулеты Лукума с Кадаифом, Лепестками Роз и Сливками", desc: "Султанские рулеты в обсыпке из хрустящего кадаифа, натуральных лепестков роз Испарты и фисташек.", price: "1 кг Ассорти • ₺520" },
+          { img: "urun6.png", code: "LKM-03", badge: "ЗАРЯД ЭНЕРГИИ", title: "Гранатовый Фитиль-Лукум и Морковное Джезерье с Фисташкой", desc: "Кисло-сладкий гранатовый лукум на натуральном соке и традиционное джезерье с орехами.", price: "1 кг Упаковка • ₺490" },
+          { img: "urun7.png", code: "HDY-01", badge: "ПАМЯТЬ АКСАРАЯ", title: "Набор Сувениров: Аксарай, Долина Ихлара и Вулкан Хасан", desc: "Рельефные магниты ручной росписи, керамические тарелки и сувениры с сельджукскими мотивами.", price: "Подарочный Набор • от ₺180" },
+          { img: "urun8.png", code: "HDY-02", badge: "РУЧНАЯ КОВКА", title: "Кованый Медный Кофейный Набор и Керамическая Лукумница", desc: "Медные кофейные чашки ручной гравировки на 2 или 6 персон, медная турка, поднос и купольная лукумница.", price: "Полный Комплект • ₺850" },
+          { img: "urun9.png", code: "YRS-03", badge: "МЕСТНЫЙ ВКУС", title: "Аксарайский Кёфтюр (Ореховый Суджук), Воздушная и Тахинная Халва", desc: "Натуральный кёфтюр на виноградном бекмезе с грецким орехом, горячая воздушная халва и тахини.", price: "Региональный Пакет • ₺390" },
+          { img: "urun10.png", code: "VIP-01", badge: "VIP ПОДАРОК", title: "Подарочный Сундук Султана Aksaray Gülüm", desc: "Роскошный сундук с фисташковым пишмание, лукумом двойной обжарки, кофе дибек и медными чашками.", price: "VIP Сундук • ₺1.150" },
+          { img: "urun11.png", code: "VIP-02", badge: "ДЛЯ ТОРЖЕСТВ", title: "Серебряный Поднос для Сватовства, Помолвки и Праздников", desc: "Праздничный стеклянный или серебряный поднос с шоколадным пишмание и фисташковым лукумом с лентами.", price: "Спец-оформление • ₺1.650" },
+          { img: "urun12.png", code: "VIP-03", badge: "В ДОРОГУ / ЕВРОПА", title: "Дорожный Вакуумный Набор из 5 Коробок для Авиаперелетов", desc: "Надежный комплект из 5 отдельных вакуумных коробок, не теряющий форму в багаже самолета.", price: "Набор 5 Коробок • ₺1.450" }
+        ],
+        bentoEyebrow: "// РАЗДЕЛ F • СТАНДАРТЫ КАЧЕСТВА И СВЕЖЕСТИ",
+        bentoTitle: "ГАРАНТИЯ КАЧЕСТВА И СВЕЖЕСТИ GÜLÜM PİŞMANİYE",
+        bentoCards: [
+          {
+            heading: "01 // 0% ГЛЮКОЗНОГО СИРОПА И 100% НАТУРАЛЬНЫЙ СВЕКЛОВИЧНЫЙ САХАР",
+            desc: "Никакого кукурузного сиропа, глюкозы или консервантов — только 100% натуральный свекловичный сахар и настоящее сливочное масло.",
+            tag: "★ 100% НАТУРАЛЬНЫЙ СОСТАВ"
+          },
+          {
+            heading: "02 // ЕЖЕДНЕВНАЯ ВЫТЯЖКА И ВАКУУМНАЯ ПЕЧАТЬ СВЕЖЕСТИ",
+            desc: "Никаких залежавшихся на полках сладостей. Наше пишмание и лукум производятся ежедневно и герметично упаковываются.",
+            tag: "★ ЕЖЕДНЕВНОЕ ПРОИЗВОДСТВО"
+          },
+          {
+            heading: "03 // ОТПРАВКА В ДЕНЬ ЗАКАЗА ВО ВСЕ 81 ПРОВИНЦИЮ ТУРЦИИ",
+            desc: "Заказы, оформленные до 16:00, отправляются в тот же день в ударопрочных коробках вместе с вашей поздравительной открыткой.",
+            tag: "★ БЫСТРАЯ ДОСТАВКА ПО ТУРЦИИ"
+          },
+          {
+            heading: "04 // БОГАТЫЙ ВЫБОР СУВЕНИРОВ И МЕСТНЫХ ДЕЛИКАТЕСОВ",
+            desc: "Не только сладости: сотни видов аутентичных сувениров Аксарая, медная и керамическая посуда и орехи под одной крышей.",
+            tag: "★ ВСЕ ПОД ОДНОЙ КРЫШЕЙ"
+          }
+        ],
+        footerBrandSub: "ДВОРЕЦ ПИШМАНИЕ И СУВЕНИРОВ",
+        footerAbout: "Ежедневное производство пишмание на 100% сливочном масле в медных котлах, лукум двойной обжарки с антепской фисташкой и сувениры Аксарая.",
+        footerCol2Title: "НАШИ МАГАЗИНЫ И ПРОИЗВОДСТВО",
+        footerLoc1: "📍 Центральный Рынок Аксарая и Шоурум Сувениров, Аксарай / Турция",
+        footerLoc2: "📍 Трасса E-90 / Туристический Маршрут Каппадокия - Ихлара",
+        footerHours: "ЧАСЫ РАБОТЫ: ЕЖЕДНЕВНО 07:30 — 23:00",
+        footerCol3Title: "КАТЕГОРИИ ПРОДУКЦИИ",
+        footerCat1: "→ Сливочное и Шоколадное Нитевидное Пишмание",
+        footerCat2: "→ Дворцовый Лукум Двойной Обжарки и Джезерье",
+        footerCat3: "→ Сувениры Аксарая, Долины Ихлара и Горы Хасан",
+        footerCat4: "→ Дорожные Вакуумные Наборы и Подносы для Помолвки",
+        footerCol4Title: "ЛИНИЯ ЗАКАЗОВ И ОПТОВЫХ ПРОДАЖ",
+        footerCol4Desc: "Для экспресс-доставки по Турции, автобусной отправки и корпоративных заказов:",
+        footerShipNote: "ДОСТАВКА ПО ТУРЦИИ И ВАКУУМ ДЛЯ АВИАБАГАЖА В ЕВРОПУ",
+        footerCopy: "© 2025 AKSARAY GÜLÜM PİŞMANİYE, LOKUM & SOUVENIR PALACE. ВСЕ ПРАВА ЗАЩИЩЕНЫ.",
+        footerCraft: "КОД 68 // ТРАДИЦИОННОЕ КУЛИНАРНОЕ НАСЛЕДИЕ АКСАРАЯ",
+        awwaTop: "⚡ ВЕБ-АРХИТЕКТУРА И РАЗРАБОТКА",
+        awwaBottom: "Нажмите для Заказа 3D Сайтов Нового Поколения для Вашего Бренда →",
+        toastLang: "Язык интерфейса изменен на Русский (RU).",
+        toastConfig: "Состав вашей подарочной коробки и чек обновлены."
+      },
+
+      de: {
+        preloaderTitle: "AKSARAY GÜLÜM PİŞMANİYE • PALAST FÜR TRADITIONELLE SÜSSWAREN & SOUVENIRS",
+        preloaderSub: "DIE KÖNIGLICHE SCHATZKAMMER WIRD VORBEREITET",
+        navBrandSub: "// PİŞMANİYE & GESCHENKE",
+        navLink1: "Genuss-Palast",
+        navLink2: "Geschenkbox Planen",
+        navLink3: "Handwerk X-Ray",
+        navLink4: "Abteilungen",
+        navLink5: "Versandprozess",
+        navLink6: "Produktkatalog",
+        navBadge: "Täglich Frische Produktion & Versand in 81 Provinzen: Aktiv",
+        navCta: "Schnellbestellung",
+        heroEyebrow: "AKSARAYS HISTORISCHER SÜSSWAREN- & SOUVENIRPALAST • EST. AKSARAY",
+        heroMainTitle: "AKSARAY GÜLÜM PİŞMANİYE & LOKUM PALAST",
+        heroScrollHint: "↓ SCROLLEN SIE, UM 5 KÖNIGLICHE KOLLEKTIONEN ZU ENTDECKEN",
+        heroCards: [
+          {
+            code: "01 // ARTISAN PİŞMANİYE MASTERY",
+            title: "Auf der Zunge Zergehende 100% Butter-Pişmaniye-Meisterschaft.",
+            desc: "Täglich in Aksaray in Kupferkesseln gekocht, ohne Glukose aus 100% natürlichem Rübenzucker, reiner Butter und gerösteten Antep-Pistazien gezogen.",
+            footer: "✓ TÄGLICH FRISCH GEZOGEN • 100% NATURZUCKER"
+          },
+          {
+            code: "02 // ROYAL TURKISH DELIGHT (LOKUM)",
+            title: "Doppelt Gerösteter Sultan-Lokum mit Reichlich Pistazien.",
+            desc: "Über 40 frische Sorten Türkischer Honig und Cezerye – von Granatapfelsaft und Büffelrahm bis zu Rosenblättern und knusprigem Kadayıf.",
+            footer: "◆ EDLE ANTEP-PISTAZIE • 40+ SPEZIALITÄTEN"
+          },
+          {
+            code: "03 // AKSARAY SOUVENIRS & GIFTS",
+            title: "Authentische Souvenirs mit der Seele von Aksaray.",
+            desc: "Handgefertigte Kupfer-Kaffeesets, Andenken an das Ihlara-Tal & den Berg Hasan, handbemalte Keramikschalen und regionale Geschenksets.",
+            footer: "✦ HANDWERKSKUNST • AUTHENTISCHES ANDENKEN"
+          },
+          {
+            code: "04 // GURBETÇİ & TÜRKİYE KARGO PAKETİ",
+            title: "Spezielle Vakuumverpackung für die Türkei & Europa-Reisen.",
+            desc: "Feuchtigkeitsdichte Vakuum-Blech- und Holzboxen für den taggleichen Versand in 81 Provinzen sowie perfekt geeignet für das Flugzeuggepäck nach Europa.",
+            footer: "✓ VAKUUMSCHUTZ • EXPRESSVERSAND"
+          },
+          {
+            code: "05 // CUSTOM GIFT BOX CONFIGURATOR",
+            title: "Erstellen Sie Jetzt Ihre Individuelle Geschenkbox & Bestellung.",
+            desc: "Kombinieren Sie Pişmaniye, Lokum und Souvenirs im interaktiven Simulator unten; laden Sie Ihren Beleg als PDF herunter oder bestellen Sie per WhatsApp.",
+            btn1: "Box-Konfigurator Öffnen ↓",
+            btn2: "WhatsApp Bestellung ↗"
+          }
+        ],
+        cfgEyebrow: "// BEREICH A • INTERAKTIVER BESTELL- & GESCHENKBOX-SIMULATOR",
+        cfgTitle: "GESTALTEN SIE IHRE EIGENE GESCHENKBOX & BESTELLUNG",
+        cfgDesc: "Kombinieren Sie in 4 Schritten Pişmaniye, doppelt gerösteten Palast-Lokum, regionale Spezialitäten und Souvenirs aus Aksaray.",
+        cfgStep1Title: "SCHRITT 01 // AUSWAHL DES GESCHENKBOX-KONZEPTS",
+        cfgStep2Title: "SCHRITT 02 // GEWICHT, BOXGRÖSSE & ANZAHL WÄHLEN",
+        cfgStep3Title: "SCHRITT 03 // GESCHMACK & INHALT ANPASSEN",
+        cfgStep4Title: "SCHRITT 04 // SOUVENIRS, PRÄSENTATION & VERSAND-EXTRAS",
+        cfgStep1: [
+          { label: "Aksaray Gülüm VIP Gemischte Genuss-Box (Pişmaniye + Spezial-Lokum + Regionale Halva — ₺650)", price: 650 },
+          { label: "Frisches Pişmaniye-Trio-Paket (Klassisch Butter, Antep-Pistazie & Belgische Schokolade 3er-Set — ₺480)", price: 480 },
+          { label: "Palast-Lokum & Cezerye Prestige-Tablett (Doppelt Geröstete Pistazie, Granatapfel & Rahm 1,5 Kg — ₺790)", price: 790 },
+          { label: "Große Geschenk-Truhe „Andenken an Aksaray“ (Pişmaniye + Lokum + Kupfer-Kaffeeset + Keramik/Magnet — ₺1.350)", price: 1350 }
+        ],
+        cfgStep2: [
+          { label: "Standard Familien- & Bewirtungsgröße (1 Box / ~1 Kg Netto-Genuss)", addPrice: 0, multiplier: 1 },
+          { label: "Gäste- & Geschenkgröße — 2er Spezial Blech-/Holz-Set (+₺450 • 10% Preisvorteil)", addPrice: 450, multiplier: 1 },
+          { label: "Heimaturlauber & Reise-Paket — 5er Vakuum-Set (+₺1.250 • Gratis Versand + Gratis Kolonya)", addPrice: 1250, multiplier: 1 },
+          { label: "Hochzeits-, Verlobungs- oder Firmen-Großbestellung (Ab 10 Boxen mit Spezialrabatt)", addPrice: 0, multiplier: 8.5 }
+        ],
+        cfgStep3: [
+          "Klassische Auswahl mit Extra Antep-Pistazien & Reiner Butter",
+          "Fokus auf Belgische Vollmilch-/Zartbitterschokoladen-Pişmaniye & Haselnuss-Lokum",
+          "Fruchtig-Frische Auswahl mit Rosenblättern, Granatapfel & Brombeere",
+          "Halb & Halb: Klassisch Butter + Schokoladen-Pişmaniye & Gemischter Roll-Lokum"
+        ],
+        cfgAddon0: "Spezielle Vakuum-Frischeschutzverpackung & Aksaray Gülüm Prestige-Tragetasche (Inklusive ✓)",
+        cfgAddon1: "Handgefertigte Kupfer-Kaffeekanne (Cezve), 2er Kaffeetassen & Aksaray-Magnet hinzufügen (+₺380)",
+        cfgAddon2: "Regionales Paket: Aksaray Schaum-Halva, Tahin & Walnuss-Köftür hinzufügen (+₺260)",
+        cfgAddon3: "Versiegelte Geschenkkarte, Schleifendekoration & Express-Haustürlieferung hinzufügen (+₺90)",
+        receiptBadge: "● LIVE-KONFIGURATOR-ZUSAMMENFASSUNG",
+        receiptTitle: "AKSARAY GÜLÜM // OFFIZIELLER BESTELL- & GESCHENKBOX-BELEG",
+        receiptLblBox: "GEWÄHLTES BOX-KONZEPT:",
+        receiptLblSize: "GRÖSSE & GEWICHT:",
+        receiptLblFlavor: "GESCHMACKSPRÄFERENZ:",
+        receiptLblAddons: "SOUVENIR-EXTRAS:",
+        receiptNoteLabel: "LIEFERART / NAME / STADT NOTIZ:",
+        receiptNotePlaceholder: "z.B. Max Mustermann - Versand nach Istanbul oder Abholung",
+        receiptTotalLabel: "SOFORT BERECHNETER GESAMTBETRAG",
+        receiptBtnWhatsapp: "Bestellung per WhatsApp Bestätigen & Frisch Zubereiten ↗",
+        receiptBtnPdf: "📄 Offiziellen Bestellbeleg & Box-Inhalt Herunterladen (PDF / VIP Pass)",
+        xrayEyebrow: "// BEREICH B • INTERAKTIVER HANDWERKS- & PRÄSENTATIONSVERGLEICH",
+        xrayTitle: "TRADITIONELLE KUPFERKESSEL-MEISTERSCHAFT VS. MODERNE VIP-PRÄSENTATION // X-RAY",
+        xrayDesc: "Bewegen Sie den goldenen Regler nach links und rechts, um unser jahrhundertealtes Kupferkessel-Handwerk mit unserer modernen Vakuum-VIP-Präsentation zu vergleichen.",
+        xrayLeftLabel: "TRADITIONELLER KUPFERKESSEL, REINE BUTTER & HANDGEZOGENE ZUCKERFÄDEN",
+        xrayLeftBadge: "TRADITIONELLER KUPFERKESSEL, REINE BUTTER & HANDGEZOGENE ZUCKERFÄDEN",
+        xrayRightLabel: "AKSARAY GÜLÜM MODERNE SCHOKOLADEN-, PISTAZIEN- & VAKUUM-VIP-PRÄSENTATION",
+        xrayRightBadge: "AKSARAY GÜLÜM MODERNE SCHOKOLADEN-, PISTAZIEN- & VAKUUM-VIP-PRÄSENTATION",
+        mapEyebrow: "// BEREICH C • INTERAKTIVER LADEN- & PRODUKTIONSPLAN",
+        mapTitle: "AKSARAY GÜLÜM GENUSS-PALAST // 5-ABTEILUNGEN-ENTDECKERKARTE",
+        mapDesc: "Klicken Sie auf die leuchtenden Hotspots 01 bis 05 im Grundriss, um unsere Spezialitäten- und Souvenirabteilungen zu entdecken.",
+        mapSvgHeader: "ARCHITEKTONISCHER GRUNDRISS // ZENTRUM AKSARAY & E-90 SHOWROOM",
+        hsCtaBtn: "Geschenkbox mit Produkten Dieser Abteilung Planen ↓",
+        hotspots: [
+          {
+            code: "HOTSPOT 01 // AKTIVE ABTEILUNG",
+            title: "01 // ABTEILUNG FÜR WARME PİŞMANİYE & SCHOKOLADENÜBERZUG",
+            desc: "Täglich warm gezogene Faden-Halva, belgischer Schokoladenbrunnen und Theke mit frisch gerösteten Antep-Pistazien.",
+            bullets: ["✓ 100% Reine Butter & Natürlicher Rübenzucker", "✓ Vollmilch- & Zartbitter-Schokoladenüberzug aus Belgien", "✓ Warme Verkostung & Direkte Abfüllung in Schmuckdosen"]
+          },
+          {
+            code: "HOTSPOT 02 // AKTIVE ABTEILUNG",
+            title: "02 // SCHATZKAMMER FÜR PALAST-LOKUM, CEZERYE & SCHAUM-HALVA",
+            desc: "40 Sorten doppelt gerösteter Lokum, Büffelrahm-Rollen, Granatapfel-Stangen, Tahin- und traditionelle Schaum-Halva.",
+            bullets: ["✓ 45% Anteil an Erstklassigen Grünen Antep-Pistazien", "✓ Echter Granatapfelsaft, Isparta-Rosenblätter & Kadayıf", "✓ Warme Aksaray Schaum-Halva & Sesam-Tahin-Halva"]
+          },
+          {
+            code: "HOTSPOT 03 // AKTIVE ABTEILUNG",
+            title: "03 // GALERIE FÜR AKSARAY-SOUVENIRS, KUPFER & KERAMIK",
+            desc: "Handgeschmiedete Kupfer-Kaffeesets, Andenken an das Ihlara-Tal & den Berg Hasan sowie handbemalte Keramikschalen.",
+            bullets: ["✓ Verzinnte Handgeschmiedete Kupfer-Kaffee- & Lokum-Sets", "✓ Magnete & Teller mit Ihlara-, Hasan-Dağı- & Seldschuken-Motiven", "✓ Bruchsichere Exklusive Geschenkverpackung"]
+          },
+          {
+            code: "HOTSPOT 04 // AKTIVE ABTEILUNG",
+            title: "04 // FRISCHE NÜSSE, DİBEK-KAFFEE & REGIONALER BAUERNMARKT",
+            desc: "Warm geröstete Nüsse, osmanischer Dibek-Kaffee mit Kardamom, Aksaray-Köftür, Naturhonig und Traubenmelasse.",
+            bullets: ["✓ Steinmühlen-Dibek-, Menengiç- & Mastix-Türkischer Kaffee", "✓ Natürlicher Aksaray-Köftür aus Traubenmelasse & Walnüssen", "✓ Täglich Frisch Geröstete Pistazien, Mandeln & Haselnüsse"]
+          },
+          {
+            code: "HOTSPOT 05 // AKTIVE ABTEILUNG",
+            title: "05 // VIP-GESCHENKVERPACKUNG & VAKUUM-VERSANDZENTRUM",
+            desc: "Verlobungstabletts, Vakuumierstation für das Flugzeuggepäck von Heimaturlaubern und Expressversand in alle 81 Provinzen.",
+            bullets: ["✓ Luft- und Feuchtigkeitsdichte Thermo-Vakuumversiegelung", "✓ Ideal für das Flugzeuggepäck nach Deutschland, Österreich & Schweiz", "✓ Taggleicher Versand bei Bestellung bis 16:00 Uhr"]
+          }
+        ],
+        roadEyebrow: "// BEREICH D • FRISCHE-FAHRPLAN VOM KESSEL BIS ZUR HAUSTÜR",
+        roadTitle: "IN 4 SCHRITTEN VOM KUPFERKESSEL IN DIE TÜRKEI & NACH EUROPA",
+        roadDesc: "Klicken Sie auf die 4 Schritte, um zu erfahren, wie unsere glukosefreien Spezialitäten im Vakuumpanzer frisch bei Ihnen ankommen.",
+        roadSpecHeader: "QUALITÄTS- & GARANTIEPARAMETER",
+        roadmapSteps: [
+          {
+            tab: "SCHRITT 01 // NATURROHSTOFFE",
+            title: "SCHRITT 01 (NATURROHSTOFFE) // 100% RÜBENZUCKER, BUTTER & PISTAZIEN",
+            desc: "Wir verwenden niemals Glukosesirup oder künstliche Süßstoffe – nur 100% natürlichen Rübenzucker, reine Butter und erstklassige Gaziantep-Pistazien.",
+            metric: "0% Glukose • 100% Natur",
+            sub: "GEPRÜFTE PREMIUM-ROHSTOFFQUALITÄT"
+          },
+          {
+            tab: "SCHRITT 02 // HANDWERK & ZIEHEN",
+            title: "SCHRITT 02 (MEISTERSCHAFT) // KUPFERKESSEL & TAUSENDE SEIDENFÄDEN",
+            desc: "Bei 160°C gekochte Zuckermasse verbindet sich in den Händen unserer Meister mit in Butter geröstetem Mehl zu tausenden feinen Seidenfäden.",
+            metric: "160°C Traditioneller Kessel",
+            sub: "TAUSENDE ZARTE ZUCKERFASERN"
+          },
+          {
+            tab: "SCHRITT 03 // VAKUUMPANZER",
+            title: "SCHRITT 03 (VAKUUMPANZER) // FEUCHTIGKEITS- & LUFTDICHTE VERPACKUNG",
+            desc: "Damit die wattige Textur der Pişmaniye und die Weichheit des Lokums monatelang erhalten bleiben, wird jede Box sofort luftdicht versiegelt.",
+            metric: "6 Monate Frischegarantie",
+            sub: "FEUCHTIGKEITS- & SAUERSTOFFBARRIERE"
+          },
+          {
+            tab: "SCHRITT 04 // EXPRESSLIEFERUNG",
+            title: "SCHRITT 04 (EXPRESSVERSAND) // ABHOLUNG IN AKSARAY ODER LANDESWEITER VERSAND",
+            desc: "Holen Sie Ihre Bestellung frisch bei Tee/Kaffee in unserem Geschäft in Aksaray ab oder nutzen Sie unseren stoßgeschützten Paketversand.",
+            metric: "81 Provinzen + EU-Reisegepäck",
+            sub: "STOSSDÄMPFENDE SPEZIALKARTONAGE"
+          }
+        ],
+        catEyebrow: "// BEREICH E • 12 MEISTERWERKE & PRODUKTKATALOG",
+        catTitle: "PALAST-PİŞMANİYE, LOKUM & SOUVENIR-KOLLEKTION",
+        catDesc: "Entdecken Sie unsere 4 Hauptkategorien und bestellen Sie jedes Produkt mit einem Klick frisch über unsere WhatsApp-Bestelllinie.",
+        catTabs: [
+          "[ PİŞMANİYE-KOLLEKTION ]",
+          "[ PALAST-LOKUM & CEZERYE ]",
+          "[ AKSARAY-SOUVENIRS & REGIONALES ]",
+          "[ VIP-BOXEN & FESTTAGSPAKETE ]"
+        ],
+        catOrderBtn: "Dieses Produkt per WhatsApp Bestellen ↗",
+        products: [
+          { img: "urun1.png", code: "PİS-01", badge: "BESTSELLER", title: "Butter-Pişmaniye mit Reichlich Antep-Pistazien", desc: "Traditionelle Aksaray Gülüm Pişmaniye, die wie Watte im Mund schmilzt, verfeinert mit gehackten Antep-Pistazien.", price: "500g / 1 Kg • ab ₺240" },
+          { img: "urun2.png", code: "PİS-02", badge: "SPEZIALSERIE", title: "Palast-Pişmaniye mit Belgischem Schokoladenüberzug", desc: "Mit echter belgischer Vollmilch- und Zartbitterschokolade überzogene Pişmaniye-Würfel – perfekt zum Kaffee.", price: "400g Spezialbox • ₺290" },
+          { img: "urun3.png", code: "PİS-03", badge: "GESCHENKDOSE", title: "4er Prestige-Box: Rose, Kakao, Pistazie & Klassisch", desc: "Vier edle Geschmacksrichtungen vereint in einer langlebigen Metall-/Holz-Geschenkbox.", price: "800g VIP-Box • ₺380" },
+          { img: "urun4.png", code: "LKM-01", badge: "45% PISTAZIEN", title: "Doppelt Gerösteter Hünkar Antep-Pistazien-Lokum", desc: "Gefüllt mit ganzen gerösteten Antep-Pistazien, umhüllt von Puderzucker oder feinen Kokosraspeln.", price: "1 Kg Spezialbox • ₺580" },
+          { img: "urun5.png", code: "LKM-02", badge: "GOURMET-WAHL", title: "Lokum-Rollen mit Kadayıf, Rosenblättern & Büffelrahm", desc: "Sultan-Rollen ummantelt mit knusprigem Kadayıf, natürlichen Isparta-Rosenblättern und Pistazien.", price: "1 Kg Gemischt • ₺520" },
+          { img: "urun6.png", code: "LKM-03", badge: "ENERGIEQUELLE", title: "Granatapfel-Stangen-Lokum & Karotten-Pistazien-Cezerye", desc: "Süß-säuerlicher Granatapfel-Lokum aus echtem Fruchtsaft sowie traditionelle Cezerye mit Pistazien.", price: "1 Kg Paket • ₺490" },
+          { img: "urun7.png", code: "HDY-01", badge: "AKSARAY-ANDENKEN", title: "Souvenir-Set: Aksaray, Ihlara-Tal & Berg Hasan", desc: "Handbemalte Relief-Magnete, Keramikteller sowie dekorative Somuncu-Baba- und Seldschuken-Andenken.", price: "Geschenkset • ab ₺180" },
+          { img: "urun8.png", code: "HDY-02", badge: "HANDARBEIT KUPFER", title: "Handgeschmiedetes Kupfer-Kaffeeset & Keramik-Lokumschale", desc: "Handgraviertes Kupfer-Kaffeetassenset für 2 oder 6 Personen, Kupferkanne, Tablett und Lokum-Servierschale.", price: "Komplett-Set • ₺850" },
+          { img: "urun9.png", code: "YRS-03", badge: "REGIONALE SPEZIALITÄT", title: "Aksaray-Köftür (Walnuss-Fruchtrolle), Schaum- & Tahin-Halva", desc: "Natürlicher Köftür aus Traubenmelasse und Walnüssen, warme Schaum-Halva und Steinmühlen-Tahin.", price: "Regional-Paket • ₺390" },
+          { img: "urun10.png", code: "VIP-01", badge: "FIRMEN & VIP", title: "Aksaray Gülüm Sultan-Geschenktruhe", desc: "Luxuriöse Geschenktruhe mit Pistazien-Pişmaniye, doppelt geröstetem Lokum, Dibek-Kaffee und Kupfertassen.", price: "VIP-Truhe • ₺1.150" },
+          { img: "urun11.png", code: "VIP-02", badge: "VERLOBUNG & FEST", title: "Silber-Festtablett für Brautwerbung, Verlobung & Feiertage", desc: "Mit Schleifen verziertes Glas- oder Silbertablett mit Schokoladen-Pişmaniye und Doppel-Pistazien-Lokum.", price: "Spezial-Arrangement • ₺1.650" },
+          { img: "urun12.png", code: "VIP-03", badge: "HEIMATURLAUBER-SET", title: "5er Vakuum-Reiseset für Europa & Flugreisen", desc: "Stoßfestes, feuchtigkeitsdichtes Paket aus 5 einzeln vakuumierten Boxen für das Flugzeuggepäck.", price: "5er Box-Set • ₺1.450" }
+        ],
+        bentoEyebrow: "// BEREICH F • VERFASSUNG FÜR QUALITÄT & FRISCHE",
+        bentoTitle: "GÜLÜM PİŞMANİYE QUALITÄTS- & FRISCHEGARANTIE",
+        bentoCards: [
+          {
+            heading: "01 // 0% GLUKOSESIRUP & 100% NATÜRLICHER RÜBENZUCKER",
+            desc: "In keinem unserer Produkte werden Maissirup, Glukose oder künstliche Konservierungsstoffe verwendet – nur 100% natürlicher Rübenzucker und echte Butter.",
+            tag: "★ 100% NATÜRLICHE ZUTATEN"
+          },
+          {
+            heading: "02 // TÄGLICH FRISCH GEZOGEN & VAKUUM-FRISCHESIEGEL",
+            desc: "Schluss mit monatelang gelagerter Regalware. Unsere Pişmaniye und Lokum-Sorten werden täglich frisch hergestellt und feuchtigkeitsdicht versiegelt.",
+            tag: "★ TÄGLICH FRISCHE PRODUKTION"
+          },
+          {
+            heading: "03 // TAGGLEICHER GESCHÜTZTER VERSAND IN ALLE 81 PROVINZEN",
+            desc: "Alle Bestellungen bis 16:00 Uhr werden noch am selben Tag in stoßdämpfenden Spezialkartons inklusive Ihrer Geschenkkarte verschickt.",
+            tag: "★ SCHNELLER VERSAND IN 81 PROVINZEN"
+          },
+          {
+            heading: "04 // GROSSE AUSWAHL AN SOUVENIRS & REGIONALEN PRODUKTEN",
+            desc: "Nicht nur Süßwaren: Hunderte authentische Souvenirs aus Aksaray, Kupfer-/Keramiksets und frische Nüsse unter einem Dach.",
+            tag: "★ ALLES UNTER EINEM DACH"
+          }
+        ],
+        footerBrandSub: "PALAST FÜR PİŞMANİYE & GESCHENKE",
+        footerAbout: "Tägliche Kupferkessel-Produktion in Aksaray: 100% Butter-Pişmaniye, doppelt gerösteter Antep-Pistazien-Lokum, regionale Spezialitäten und Souvenirs.",
+        footerCol2Title: "UNSERE FILIALEN & PRODUKTION",
+        footerLoc1: "📍 Aksaray Zentrum Basar & Souvenir-Showroom, Aksaray / Türkei",
+        footerLoc2: "📍 E-90 Fernstraße / Tourismusroute Kappadokien - Ihlara-Tal Verkaufsstelle",
+        footerHours: "ÖFFNUNGSZEITEN: TÄGLICH 07:30 — 23:00 UHR",
+        footerCol3Title: "PRODUKTKATEGORIEN",
+        footerCat1: "→ Butter- & Belgische Schokoladen-Pişmaniye",
+        footerCat2: "→ Doppelt Gerösteter Palast-Lokum & Cezerye",
+        footerCat3: "→ Souvenirs aus Aksaray, Ihlara-Tal & Berg Hasan",
+        footerCat4: "→ Vakuum-Reisepakete & Verlobungstabletts",
+        footerCol4Title: "BESTELL- & GROSSHANDELSHOTLINE",
+        footerCol4Desc: "Für taggleichen stoßgeschützten Versand, Bus-Fracht und Firmen-Geschenkbestellungen:",
+        footerShipNote: "TÜRKEIWEITER VERSAND & EUROPA-FLUGGEPÄCK-VAKUUMGEEIGNET",
+        footerCopy: "© 2025 AKSARAY GÜLÜM PİŞMANİYE, LOKUM & SOUVENIR-PALAST. ALLE RECHTE VORBEHALTEN.",
+        footerCraft: "KENNZEICHEN 68 // TRADITIONELLES KULINARISCHES ERBE AKSARAYS",
+        awwaTop: "⚡ WEB-ARCHITEKTUR & ENTWICKLUNG",
+        awwaBottom: "Klicken Sie hier für 3D-Bestell-Websites der nächsten Generation für Ihre Marke →",
+        toastLang: "Sprache auf Deutsch (DE) umgestellt.",
+        toastConfig: "Ihre Geschenkbox und Ihr Bestellbeleg wurden aktualisiert."
+      }
+    };
+
+    // ====================================================================
+    // 150-FRAME HERO CANVAS ENGINE + PROCEDURAL SILK PİŞMANİYE FALLBACK
+    // ====================================================================
+    const heroCanvas = document.getElementById('hero-canvas');
+    const heroCtx = heroCanvas.getContext('2d');
+    const frameImages = new Array(TOTAL_FRAMES);
+    let loadedFramesCount = 0;
+    let currentFrameIndex = 0;
+
+    function resizeHeroCanvas() {
+      heroCanvas.width = window.innerWidth * window.devicePixelRatio;
+      heroCanvas.height = (window.innerHeight - 80) * window.devicePixelRatio;
+      renderHeroCanvasFrame(currentFrameIndex);
+    }
+
+    // Object-fit: cover center crop algorithm (drawImageProp)
+    function drawImageProp(ctx, img, x, y, w, h, offsetX = 0.5, offsetY = 0.5) {
+      const iw = img.naturalWidth || img.width;
+      const ih = img.naturalHeight || img.height;
+      const r = Math.min(w / iw, h / ih);
+      let nw = iw * r;
+      let nh = ih * r;
+      let cx, cy, cw, ch, ar = 1;
+
+      if (nw < w) ar = w / nw;
+      if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
+      nw *= ar;
+      nh *= ar;
+
+      cw = iw / (nw / w);
+      ch = ih / (nh / h);
+      cx = (iw - cw) * offsetX;
+      cy = (ih - ch) * offsetY;
+
+      if (cx < 0) cx = 0;
+      if (cy < 0) cy = 0;
+      if (cw > iw) cw = iw;
+      if (ch > ih) ch = ih;
+
+      ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
+    }
+
+    // Procedural Luxury Roasted Cocoa & Golden Spun Sugar Fiber Fallback
+    function drawProceduralSilkFallback(ctx, w, h, frameIdx) {
+      const progress = frameIdx / (TOTAL_FRAMES - 1);
+
+      // Base Roasted Cocoa / Caramel Radial Gradient
+      const grad = ctx.createRadialGradient(
+        w * (0.5 + Math.sin(progress * Math.PI * 2) * 0.08),
+        h * 0.48,
+        w * 0.05,
+        w * 0.5,
+        h * 0.5,
+        Math.max(w, h) * 0.75
+      );
+      grad.addColorStop(0, '#3D2216');
+      grad.addColorStop(0.45, '#1A0F0A');
+      grad.addColorStop(1, '#0E0805');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Rotating Golden / Silk Pişmaniye Fiber Rings
+      const cx = w * 0.5;
+      const cy = h * 0.48;
+      const baseRadius = Math.min(w, h) * 0.27;
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(progress * Math.PI * 1.6);
+
+      for (let i = 0; i < 38; i++) {
+        const angleOffset = (i / 38) * Math.PI * 2;
+        const r = baseRadius * (0.55 + (i % 7) * 0.09);
+        ctx.beginPath();
+        ctx.ellipse(
+          Math.cos(angleOffset) * 18,
+          Math.sin(angleOffset) * 18,
+          r,
+          r * 0.64,
+          angleOffset + progress * 2.2,
+          0,
+          Math.PI * 2
+        );
+        ctx.strokeStyle = i % 5 === 0
+          ? 'rgba(132, 169, 85, 0.22)'
+          : i % 2 === 0
+            ? 'rgba(223, 184, 136, 0.24)'
+            : 'rgba(250, 244, 235, 0.12)';
+        ctx.lineWidth = (i % 3 === 0 ? 2.2 : 1.1) * window.devicePixelRatio;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function renderHeroCanvasFrame(index) {
+      const w = heroCanvas.width;
+      const h = heroCanvas.height;
+      heroCtx.clearRect(0, 0, w, h);
+
+      const img = frameImages[index];
+      if (img && img.complete && img.naturalWidth > 0) {
+        drawImageProp(heroCtx, img, 0, 0, w, h, 0.5, 0.5);
+      } else {
+        drawProceduralSilkFallback(heroCtx, w, h, index);
+      }
+    }
+
+    function preloadHeroFrames() {
+      const preloaderBar = document.getElementById('preloader-bar');
+      const preloaderPct = document.getElementById('preloader-percentage');
+      const preloaderEl = document.getElementById('preloader');
+      let settledCount = 0;
+
+      const handleProgress = () => {
+        settledCount++;
+        const pct = Math.min(100, Math.round((settledCount / TOTAL_FRAMES) * 100));
+        preloaderBar.style.width = `${pct}%`;
+        preloaderPct.textContent = `%${pct.toString().padStart(2, '0')}`;
+
+        if (settledCount >= TOTAL_FRAMES) {
+          renderHeroCanvasFrame(0);
+          setTimeout(() => {
+            preloaderEl.classList.add('opacity-0', 'pointer-events-none');
+          }, 300);
+        }
+      };
+
+      for (let i = 1; i <= TOTAL_FRAMES; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        img.onload = () => {
+          loadedFramesCount++;
+          handleProgress();
+        };
+        img.onerror = () => {
+          handleProgress();
+        };
+        frameImages[i - 1] = img;
+      }
+
+      // Safety fallback timeout so preloader never hangs on slow local disks
+      setTimeout(() => {
+        preloaderEl.classList.add('opacity-0', 'pointer-events-none');
+        renderHeroCanvasFrame(0);
+      }, 2200);
+    }
+
+    // ====================================================================
+    // 5-CARD MEXICAN WAVE HERO RENDERER & COSINE BELL-CURVE ENGINE
+    // ====================================================================
+    function renderHeroCards() {
+      const cards = I18N[currentLang].heroCards;
+      const grid = document.getElementById('hero-wave-grid');
+
+      grid.innerHTML = cards.map((card, idx) => {
+        const isLast = idx === 4;
+        return `
+          <div id="wave-card-${idx}" class="imperial-glass spotlight-card rounded-2xl p-5 flex flex-col justify-between transition-colors duration-300 border border-[#DFB888]/35">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-josefin text-[11px] font-bold tracking-[0.2em] text-[#DFB888] uppercase">${card.code}</span>
+                <span class="w-2 h-2 rounded-full ${idx % 2 === 0 ? 'bg-[#DFB888]' : 'bg-[#84A955]'}"></span>
+              </div>
+              <h2 class="font-marcellus text-lg xl:text-xl text-[#FAF4EB] mb-2.5 leading-snug">${card.title}</h2>
+              <p class="text-xs xl:text-sm text-[#FAF4EB]/80 leading-relaxed mb-4">${card.desc}</p>
+            </div>
+
+            ${!isLast ? `
+              <div class="pt-3 border-t border-[#DFB888]/20 font-josefin text-[11px] tracking-[0.15em] text-[#84A955] font-semibold uppercase">
+                ${card.footer}
+              </div>
+            ` : `
+              <div class="space-y-2 pt-2 border-t border-[#DFB888]/20">
+                <a href="#gift-configurator" class="caramel-btn w-full py-2.5 px-3 rounded-xl font-josefin text-[11px] font-bold uppercase tracking-[0.15em] flex items-center justify-center">
+                  ${card.btn1}
+                </a>
+                <a href="https://wa.me/${WHATSAPP_NUMBER}?text=Merhaba%20Aksaray%20G%C3%BCl%C3%BCm%20Pi%C5%9Fmaniye,%20sipari%C5%9F%20vermek%20istiyorum." target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-xl bg-[#1A0F0A] hover:bg-[#281710] border border-[#84A955]/50 font-josefin text-[11px] font-semibold uppercase tracking-[0.15em] text-[#FAF4EB] flex items-center justify-center">
+                  ${card.btn2}
+                </a>
+              </div>
+            `}
+          </div>
+        `;
+      }).join('');
+
+      attachSpotlightListeners();
+    }
+
+    function updateMexicanWave(progress) {
+      const cardCount = 5;
+      for (let i = 0; i < cardCount; i++) {
+        const el = document.getElementById(`wave-card-${i}`);
+        if (!el) continue;
+
+        const peak = i / (cardCount - 1); // 0.0, 0.25, 0.50, 0.75, 1.0
+        const width = 0.34;
+        const dist = Math.abs(progress - peak);
+
+        let waveFactor = 0;
+        if (dist < width) {
+          waveFactor = 0.5 * (1 + Math.cos((dist / width) * Math.PI));
+        }
+
+        const yOffset = (1 - waveFactor) * 35; // +35px down to 0px at peak
+        const opacity = 0.2 + waveFactor * 0.8; // 0.2 inactive up to 1.0 active
+        const scale = 0.95 + waveFactor * 0.05; // 0.95 inactive up to 1.0 active
+
+        el.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+        el.style.opacity = opacity.toFixed(3);
+        el.style.borderColor = waveFactor > 0.65
+          ? 'rgba(223, 184, 136, 0.9)'
+          : 'rgba(223, 184, 136, 0.25)';
+        el.style.boxShadow = waveFactor > 0.65
+          ? '0 25px 60px -12px rgba(223, 184, 136, 0.32)'
+          : '0 15px 35px -15px rgba(0, 0, 0, 0.8)';
+      }
+    }
+
+    // ====================================================================
+    // SECTION A: GIFT BOX & ORDER CONFIGURATOR ENGINE
+    // ====================================================================
+    function renderConfiguratorOptions() {
+      const dict = I18N[currentLang];
+
+      // Step 1
+      const s1Container = document.getElementById('cfg-step1-options');
+      s1Container.innerHTML = dict.cfgStep1.map((item, idx) => {
+        const active = selectedConfig.step1 === idx;
+        return `
+          <button
+            onclick="setConfigStep(1, ${idx}, this)"
+            class="text-left p-4 rounded-xl border transition-all ${
+              active
+                ? 'bg-[#281710] border-[#DFB888] shadow-[0_0_25px_rgba(223,184,136,0.25)]'
+                : 'bg-[#1A0F0A]/75 border-[#DFB888]/20 hover:border-[#DFB888]/60'
+            }"
+          >
+            <div class="flex items-center justify-between mb-1.5 font-josefin text-xs">
+              <span class="tracking-widest text-[#DFB888] uppercase">KONSEPT 0${idx + 1}</span>
+              <span class="px-2 py-0.5 rounded-full ${active ? 'bg-[#DFB888] text-[#0E0805] font-bold' : 'bg-[#0E0805] text-[#DFB888]'}">₺${item.price}</span>
+            </div>
+            <p class="text-sm text-[#FAF4EB] font-medium leading-snug">${item.label}</p>
+          </button>
+        `;
+      }).join('');
+
+      // Step 2
+      const s2Container = document.getElementById('cfg-step2-options');
+      s2Container.innerHTML = dict.cfgStep2.map((item, idx) => {
+        const active = selectedConfig.step2 === idx;
+        return `
+          <button
+            onclick="setConfigStep(2, ${idx}, this)"
+            class="text-left p-4 rounded-xl border transition-all ${
+              active
+                ? 'bg-[#281710] border-[#84A955] shadow-[0_0_25px_rgba(132,169,85,0.22)]'
+                : 'bg-[#1A0F0A]/75 border-[#DFB888]/20 hover:border-[#DFB888]/60'
+            }"
+          >
+            <div class="flex items-center justify-between mb-1.5 font-josefin text-xs">
+              <span class="tracking-widest text-[#84A955] uppercase">BOYUT 0${idx + 1}</span>
+              <span class="text-[#DFB888] font-bold">${active ? '✓' : '○'}</span>
+            </div>
+            <p class="text-sm text-[#FAF4EB] font-medium leading-snug">${item.label}</p>
+          </button>
+        `;
+      }).join('');
+
+      // Step 3
+      const s3Container = document.getElementById('cfg-step3-options');
+      s3Container.innerHTML = dict.cfgStep3.map((label, idx) => {
+        const active = selectedConfig.step3 === idx;
+        return `
+          <button
+            onclick="setConfigStep(3, ${idx}, this)"
+            class="text-left p-4 rounded-xl border transition-all ${
+              active
+                ? 'bg-[#281710] border-[#DFB888] shadow-[0_0_25px_rgba(223,184,136,0.25)]'
+                : 'bg-[#1A0F0A]/75 border-[#DFB888]/20 hover:border-[#DFB888]/60'
+            }"
+          >
+            <div class="flex items-center justify-between mb-1.5 font-josefin text-xs">
+              <span class="tracking-widest text-[#DFB888] uppercase">SEÇKİ 0${idx + 1}</span>
+              <span class="text-[#84A955] font-bold">${active ? '✓' : '○'}</span>
+            </div>
+            <p class="text-sm text-[#FAF4EB] font-medium leading-snug">${label}</p>
+          </button>
+        `;
+      }).join('');
+
+      updateOrderReceipt();
+    }
+
+    function setConfigStep(stepNum, idx, btnEl) {
+      selectedConfig[`step${stepNum}`] = idx;
+      renderConfiguratorOptions();
+      showToast(I18N[currentLang].toastConfig);
+    }
+
+    function generateDynamicQR(seedValue) {
+      const svg = document.getElementById('dynamic-qr-svg');
+      if (!svg) return;
+      let cells = '';
+      // Corner finder patterns
+      cells += `<rect x="4" y="4" width="16" height="16" fill="none" stroke="#0E0805" stroke-width="3"/>`;
+      cells += `<rect x="8" y="8" width="8" height="8" fill="#0E0805"/>`;
+      cells += `<rect x="44" y="4" width="16" height="16" fill="none" stroke="#0E0805" stroke-width="3"/>`;
+      cells += `<rect x="48" y="8" width="8" height="8" fill="#0E0805"/>`;
+      cells += `<rect x="4" y="44" width="16" height="16" fill="none" stroke="#0E0805" stroke-width="3"/>`;
+      cells += `<rect x="8" y="48" width="8" height="8" fill="#0E0805"/>`;
+
+      for (let r = 0; r < 6; r++) {
+        for (let c = 0; c < 6; c++) {
+          const bit = (seedValue + r * 17 + c * 31) % 3 === 0;
+          if (bit) {
+            const x = 22 + c * 3.2;
+            const y = 22 + r * 3.2;
+            cells += `<rect x="${x}" y="${y}" width="2.8" height="2.8" fill="#0E0805"/>`;
+          }
+        }
+      }
+      svg.innerHTML = cells;
+    }
+
+    function updateOrderReceipt() {
+      const dict = I18N[currentLang];
+      const boxObj = dict.cfgStep1[selectedConfig.step1];
+      const sizeObj = dict.cfgStep2[selectedConfig.step2];
+      const flavorStr = dict.cfgStep3[selectedConfig.step3];
+
+      const addSouvenir = document.getElementById('add-souvenir')?.checked;
+      const addRegional = document.getElementById('add-regional')?.checked;
+      const addGiftcard = document.getElementById('add-giftcard')?.checked;
+
+      const addonsList = [dict.cfgAddon0];
+      let addonsTotal = 0;
+
+      if (addSouvenir) {
+        addonsList.push(dict.cfgAddon1);
+        addonsTotal += 380;
+      }
+      if (addRegional) {
+        addonsList.push(dict.cfgAddon2);
+        addonsTotal += 260;
+      }
+      if (addGiftcard) {
+        addonsList.push(dict.cfgAddon3);
+        addonsTotal += 90;
+      }
+
+      let totalTRY = Math.round((boxObj.price + sizeObj.addPrice) * sizeObj.multiplier + addonsTotal);
+      let totalEUR = Math.max(1, Math.round(totalTRY / 36));
+
+      document.getElementById('dossier-box').textContent = boxObj.label;
+      document.getElementById('dossier-size').textContent = sizeObj.label;
+      document.getElementById('dossier-flavor').textContent = flavorStr;
+      document.getElementById('dossier-addons').innerHTML = addonsList.map(a => `<div>• ${a}</div>`).join('');
+
+      document.getElementById('dossier-total-try').textContent = `₺${totalTRY.toLocaleString('tr-TR')}`;
+      document.getElementById('dossier-total-eur').textContent = `(~€${totalEUR})`;
+
+      const bulkBadge = document.getElementById('dossier-bulk-badge');
+      if (selectedConfig.step2 === 3) {
+        bulkBadge.classList.remove('hidden');
+      } else {
+        bulkBadge.classList.add('hidden');
+      }
+
+      const refNum = 1000 + (selectedConfig.step1 + 1) * 1111 + (selectedConfig.step2 + 1) * 337 + (selectedConfig.step3 + 1) * 91 + addonsTotal;
+      const refStr = `REF-GLM-68-${refNum}`;
+      document.getElementById('receipt-ref-code').textContent = refStr;
+      document.getElementById('barcode-label').textContent = `68-${refNum}`;
+      generateDynamicQR(refNum);
+    }
+
+    function sendCustomOrderWhatsApp() {
+      const dict = I18N[currentLang];
+      const ref = document.getElementById('receipt-ref-code').textContent;
+      const box = document.getElementById('dossier-box').textContent;
+      const size = document.getElementById('dossier-size').textContent;
+      const flavor = document.getElementById('dossier-flavor').textContent;
+      const total = document.getElementById('dossier-total-try').textContent;
+      const note = document.getElementById('order-note').value || '-';
+
+      const msg = [
+        `*AKSARAY GÜLÜM PİŞMANİYE // RESMİ SİPARİŞ FİŞİ*`,
+        `*Sipariş No:* ${ref}`,
+        `*Kutu Konsepti:* ${box}`,
+        `*Boyut & Adet:* ${size}`,
+        `*Lezzet Seçimi:* ${flavor}`,
+        `*Müşteri / Teslimat Notu:* ${note}`,
+        `*Toplam Tutar:* ${total}`,
+        `Siparişimi onaylamak ve taze hazırlatmak istiyorum.`
+      ].join('\n');
+
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function downloadOrderPass() {
+      window.print();
+    }
+
+    // ====================================================================
+    // SECTION B: X-RAY COMPARISON SLIDER
+    // ====================================================================
+    function updateXraySlider(val) {
+      const topLayer = document.getElementById('xray-top-layer');
+      const divider = document.getElementById('xray-divider');
+      if (topLayer && divider) {
+        topLayer.style.clipPath = `inset(0 0 0 ${val}%)`;
+        divider.style.left = `${val}%`;
+      }
+    }
+
+    // ====================================================================
+    // SECTION C: STORE BLUEPRINT & 5 HOTSPOTS
+    // ====================================================================
+    function selectBlueprintHotspot(index) {
+      activeHotspotIndex = index;
+      const hsList = I18N[currentLang].hotspots;
+      const hs = hsList[index];
+
+      document.getElementById('hs-detail-code').textContent = hs.code;
+      document.getElementById('hs-detail-title').textContent = hs.title;
+      document.getElementById('hs-detail-desc').textContent = hs.desc;
+      document.getElementById('hs-detail-highlights').innerHTML = hs.bullets.map(
+        b => `<div class="font-josefin text-xs md:text-sm text-[#FAF4EB]/90 tracking-wide">${b}</div>`
+      ).join('');
+
+      // Highlight SVG circles & bottom quick buttons
+      for (let i = 0; i < 5; i++) {
+        const circle = document.getElementById(`hs-circle-${i}`);
+        if (circle) {
+          circle.setAttribute('fill', i === index ? '#DFB888' : '#1A0F0A');
+        }
+      }
+
+      const pillBar = document.getElementById('hotspot-pill-bar');
+      if (pillBar) {
+        pillBar.innerHTML = hsList.map((item, idx) => `
+          <button
+            onclick="selectBlueprintHotspot(${idx})"
+            class="py-2 px-2 rounded-lg font-josefin text-xs font-bold tracking-wider transition-all border ${
+              idx === index
+                ? 'bg-[#DFB888] text-[#0E0805] border-[#DFB888]'
+                : 'bg-[#1A0F0A] text-[#FAF4EB]/80 border-[#DFB888]/25 hover:border-[#DFB888]'
+            }"
+          >
+            0${idx + 1}
+          </button>
+        `).join('');
+      }
+    }
+
+    // ====================================================================
+    // SECTION D: 4-STEP PRODUCTION ROADMAP
+    // ====================================================================
+    function setRoadmapStep(index) {
+      activeRoadmapIndex = index;
+      const steps = I18N[currentLang].roadmapSteps;
+      const active = steps[index];
+
+      const tabsEl = document.getElementById('roadmap-tabs');
+      tabsEl.innerHTML = steps.map((s, idx) => `
+        <button
+          onclick="setRoadmapStep(${idx})"
+          class="p-4 rounded-xl font-josefin text-xs font-bold tracking-[0.16em] uppercase text-left transition-all border ${
+            idx === index
+              ? 'bg-gradient-to-r from-[#281710] to-[#1A0F0A] border-[#DFB888] text-[#DFB888] shadow-[0_10px_30px_rgba(223,184,136,0.2)]'
+              : 'bg-[#1A0F0A]/75 border-[#DFB888]/20 text-[#FAF4EB]/70 hover:text-[#FAF4EB]'
+          }"
+        >
+          <div class="flex items-center justify-between mb-1">
+            <span>0${idx + 1}</span>
+            <span class="${idx === index ? 'text-[#84A955]' : 'text-[#FAF4EB]/30'}">●</span>
+          </div>
+          <div>${s.tab}</div>
+        </button>
+      `).join('');
+
+      document.getElementById('road-active-badge').textContent = active.tab;
+      document.getElementById('road-active-title').textContent = active.title;
+      document.getElementById('road-active-desc').textContent = active.desc;
+      document.getElementById('road-active-metric').textContent = active.metric;
+      document.getElementById('road-active-sub').textContent = active.sub;
+    }
+
+    // ====================================================================
+    // SECTION E: 4-TAB & 12-PRODUCT CATALOG (urun1.png - urun12.png)
+    // ====================================================================
+    function setPracticeTab(tabIndex) {
+      activeCatalogTab = tabIndex;
+      const dict = I18N[currentLang];
+
+      // Render 4 Category Tab Buttons
+      const tabsContainer = document.getElementById('catalog-tabs');
+      tabsContainer.innerHTML = dict.catTabs.map((label, idx) => `
+        <button
+          onclick="setPracticeTab(${idx})"
+          class="px-5 py-3 rounded-full font-josefin text-xs font-bold tracking-[0.16em] uppercase transition-all border ${
+            idx === tabIndex
+              ? 'bg-[#DFB888] text-[#0E0805] border-[#DFB888] shadow-[0_8px_25px_rgba(223,184,136,0.35)]'
+              : 'bg-[#1A0F0A] text-[#FAF4EB]/80 border-[#DFB888]/30 hover:border-[#DFB888]'
+          }"
+        >
+          ${label}
+        </button>
+      `).join('');
+
+      // Slice 3 products for active tab
+      const startIdx = tabIndex * 3;
+      const tabProducts = dict.products.slice(startIdx, startIdx + 3);
+      const gridContainer = document.getElementById('catalog-grid');
+
+      gridContainer.innerHTML = tabProducts.map((prod) => {
+        const waText = encodeURIComponent(`Merhaba Aksaray Gülüm Pişmaniye, [${prod.code}] ${prod.title} (${prod.price}) ürününden sipariş vermek istiyorum.`);
+        return `
+          <div class="imperial-glass spotlight-card rounded-2xl p-5 flex flex-col justify-between border border-[#DFB888]/35 group">
+            <div>
+              <!-- Product Photo (urun1.png - urun12.png) with Luxury Vector Fallback -->
+              <div class="relative h-48 w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#281710] via-[#1A0F0A] to-[#0E0805] border border-[#DFB888]/25 mb-5">
+                <img
+                  src="${prod.img}"
+                  alt="${prod.title}"
+                  class="h-48 w-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden');"
+                />
+                <!-- Luxury Vector Confectionery Pattern Fallback -->
+                <div class="hidden absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-[radial-gradient(circle_at_50%_40%,rgba(223,184,136,0.22),rgba(14,8,5,0.95))]">
+                  <svg class="w-14 h-14 text-[#DFB888]/75 mb-2" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <circle cx="32" cy="32" r="24" stroke-dasharray="4 4"/>
+                    <path d="M20 34 C20 24, 44 24, 44 34 C44 42, 20 42, 20 34 Z"/>
+                    <path d="M32 14 L35 22 L43 22 L37 27 L39 35 L32 30 L25 35 L27 27 L21 22 L29 22 Z"/>
+                  </svg>
+                  <span class="font-josefin text-xs font-bold tracking-[0.25em] text-[#DFB888] uppercase">${prod.img}</span>
+                  <span class="font-josefin text-[10px] tracking-[0.18em] text-[#FAF4EB]/60 mt-0.5">${prod.code} // AKSARAY GÜLÜM</span>
+                </div>
+
+                <!-- Top Badges on Image -->
+                <div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                  <span class="px-2.5 py-1 rounded-md bg-[#0E0805]/90 border border-[#DFB888]/40 font-josefin text-[10px] font-bold tracking-widest text-[#DFB888]">
+                    ${prod.code}
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-[#84A955] text-[#0E0805] font-josefin text-[10px] font-bold tracking-wider uppercase">
+                    ${prod.badge}
+                  </span>
+                </div>
+              </div>
+
+              <h3 class="font-marcellus text-xl text-[#FAF4EB] mb-2 leading-snug group-hover:text-[#DFB888] transition-colors">
+                ${prod.title}
+              </h3>
+              <p class="text-sm text-[#FAF4EB]/75 leading-relaxed mb-5">
+                ${prod.desc}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-[#DFB888]/20">
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="font-josefin text-xs font-bold tracking-wider text-[#DFB888] uppercase">
+                  ${prod.price}
+                </span>
+                <span class="font-josefin text-[10px] tracking-widest text-[#84A955] uppercase">● STOKTA TAZE</span>
+              </div>
+
+              <a
+                href="https://wa.me/${WHATSAPP_NUMBER}?text=${waText}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="caramel-btn w-full py-3 px-4 rounded-xl font-josefin text-xs font-bold uppercase tracking-[0.15em] flex items-center justify-center gap-2"
+              >
+                <span>${dict.catOrderBtn}</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      attachSpotlightListeners();
+    }
+
+    // ====================================================================
+    // SECTION F: 4-CARD BENTO GRID (PURE UNBOXED JOSEFIN SANS HEADINGS)
+    // ====================================================================
+    function renderBentoGrid() {
+      const cards = I18N[currentLang].bentoCards;
+      const container = document.getElementById('bento-grid');
+
+      container.innerHTML = cards.map((card) => `
+        <div class="imperial-glass spotlight-card rounded-2xl p-7 md:p-9 flex flex-col justify-between border border-[#DFB888]/35">
+          <div>
+            <h3 class="font-josefin text-sm md:text-base font-bold tracking-[0.18em] text-[#DFB888] uppercase mb-4">
+              ${card.heading}
+            </h3>
+            <p class="text-sm md:text-base text-[#FAF4EB]/85 leading-relaxed mb-6">
+              ${card.desc}
+            </p>
+          </div>
+          <div class="font-josefin text-xs font-bold tracking-[0.2em] text-[#84A955] uppercase">
+            ${card.tag}
+          </div>
+        </div>
+      `).join('');
+
+      attachSpotlightListeners();
+    }
+
+    // ====================================================================
+    // MASTER LANGUAGE SWITCHER (setLanguage)
+    // ====================================================================
+    function setLanguage(lang) {
+      if (!I18N[lang]) return;
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update active state on [ TR | EN | RU | DE ] buttons
+      ['tr', 'en', 'ru', 'de'].forEach((l) => {
+        const btn = document.getElementById(`lang-btn-${l}`);
+        if (!btn) return;
+        if (l === lang) {
+          btn.className = 'px-2.5 py-1 rounded-full transition-all bg-[#DFB888] text-[#0E0805] font-bold';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-full transition-all text-[#FAF4EB]/75 hover:text-[#DFB888]';
+        }
+      });
+
+      // Translate all static data-i18n elements
+      const dict = I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // Translate placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key]) {
+          el.setAttribute('placeholder', dict[key]);
+        }
+      });
+
+      // Re-render all dynamic modules in active language
+      renderHeroCards();
+      renderConfiguratorOptions();
+      selectBlueprintHotspot(activeHotspotIndex);
+      setRoadmapStep(activeRoadmapIndex);
+      setPracticeTab(activeCatalogTab);
+      renderBentoGrid();
+
+      // Re-apply current Mexican Wave scroll position
+      const st = ScrollTrigger.getById('heroScrollTrigger');
+      updateMexicanWave(st ? st.progress : 0);
+
+      showToast(dict.toastLang);
+    }
+
+    // ====================================================================
+    // LIVE TOAST NOTIFICATION HELPER
+    // ====================================================================
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('live-toast');
+      const text = document.getElementById('live-toast-text');
+      if (!toast || !text) return;
+
+      text.textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4');
+      }, 2800);
+    }
+
+    // ====================================================================
+    // SPOTLIGHT CARD MOUSE LENS TRACKER
+    // ====================================================================
+    function attachSpotlightListeners() {
+      document.querySelectorAll('.spotlight-card').forEach((card) => {
+        card.onmousemove = (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        };
+      });
+    }
+
+    // ====================================================================
+    // COSMOS AMBIENT 70-PARTICLE & SILK STRAND CANVAS ENGINE
+    // ====================================================================
+    function initCosmosAmbientCanvas() {
+      const canvas = document.getElementById('cosmos-ambient-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = (canvas.width = window.innerWidth);
+      let h = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const particles = Array.from({ length: 70 }, (_, idx) => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2.2 + 0.8,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        color: idx % 3 === 0 ? '#84A955' : '#DFB888',
+        alpha: Math.random() * 0.55 + 0.2
+      }));
+
+      function animateCosmos() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+
+          // Fine golden silk connecting strands
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 115) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = '#DFB888';
+              ctx.globalAlpha = (1 - dist / 115) * 0.12;
+              ctx.lineWidth = 0.7;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animateCosmos);
+      }
+
+      animateCosmos();
+    }
+
+    // ====================================================================
+    // INITIALIZE GSAP SCROLLTRIGGER & ALL INTERACTIVE MODULES ON LOAD
+    // ====================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Render all initial content in Turkish
+      renderHeroCards();
+      renderConfiguratorOptions();
+      selectBlueprintHotspot(0);
+      setRoadmapStep(0);
+      setPracticeTab(0);
+      renderBentoGrid();
+      updateMexicanWave(0);
+
+      // Initialize Hero 150-Frame Canvas & Preloader
+      resizeHeroCanvas();
+      window.addEventListener('resize', resizeHeroCanvas);
+      preloadHeroFrames();
+
+      // Bind GSAP ScrollTrigger to #hero-track (520vh)
+      ScrollTrigger.create({
+        id: 'heroScrollTrigger',
+        trigger: '#hero-track',
+        start: 'top top+=80',
+        end: 'bottom bottom',
+        scrub: 0.25,
+        onUpdate: (self) => {
+          const frameIdx = Math.min(
+            TOTAL_FRAMES - 1,
+            Math.max(0, Math.floor(self.progress * (TOTAL_FRAMES - 1)))
+          );
+          if (frameIdx !== currentFrameIndex) {
+            currentFrameIndex = frameIdx;
+            renderHeroCanvasFrame(currentFrameIndex);
+          }
+          updateMexicanWave(self.progress);
+        }
+      });
+
+      // Start background particle cosmos
+      initCosmosAmbientCanvas();
+    });
+  </script>
+</body>
+</html>
